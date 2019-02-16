@@ -10,12 +10,23 @@ export const Theme = {
   neutralLightest: "#EEEEEE"
 };
 
-export const PersonalityType = {
-  Friendly: 0,
-  Standoffish: 1,
-  Confident: 2,
-  Snarky: 3,
-  Reserved: 4,
-  Shy: 5,
-  Energetic: 6
-};
+export const personalityTypes = [
+  "Friendly",
+  "Standoffish",
+  "Confident",
+  "Snarky",
+  "Reserved",
+  "Shy",
+  "Energetic"
+];
+
+export const attributeTypes = [
+  "generation",
+  "moofactoryPeriod",
+  "strength",
+  "dexterity",
+  "constitution",
+  "intelligence",
+  "wisdom",
+  "charisma"
+];

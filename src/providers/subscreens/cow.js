@@ -12,6 +12,7 @@ function AbstractCowSubscreen({
     description,
     attributes: {
       generation,
+      moofactoryPeriod,
       personalityType,
       strength,
       dexterity,
@@ -48,6 +49,12 @@ function AbstractCowSubscreen({
             <Table.Row>
               <Table.Cell>Generation</Table.Cell>
               <Table.Cell textAlign="right">{generation}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Moofactory Period</Table.Cell>
+              <Table.Cell textAlign="right">
+                {(parseInt(moofactoryPeriod) / 60 / 60).toFixed(2)} hours
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Personality</Table.Cell>

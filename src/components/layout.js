@@ -1,6 +1,5 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import { Transition } from "react-spring";
 import { Segment, Sidebar } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
@@ -30,15 +29,7 @@ export default function Layout({ children }) {
         <DrawerProvider>
           <MessengerProvider>
             <MessengerContext.Consumer>
-              {({ message }) => (
-                <Transition
-                  from={{ top: "-200px" }}
-                  enter={{ top: "0" }}
-                  leave={{ top: "-300px" }}
-                >
-                  {message && (style => <Messenger style={style} />)}
-                </Transition>
-              )}
+              {({ message }) => message && <Messenger />}
             </MessengerContext.Consumer>
             <Sidebar.Pushable>
               <Navbar />
