@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import onClickOutside from "react-onclickoutside";
 
+import { Theme } from "../constants";
 import { DrawerContext } from "../providers";
 
 class AbstractDrawer extends Component {
@@ -20,7 +21,8 @@ class AbstractDrawer extends Component {
         visible={visible}
         style={{
           padding: 0,
-          background: "#fff"
+          background: "#fff",
+          borderLeft: `2px solid ${Theme.primary}`
         }}
       >
         <Menu

@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import { Sidebar } from "semantic-ui-react";
+import { Segment, Sidebar } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 import { DrawerContext, DrawerProvider } from "../providers";
@@ -26,14 +26,14 @@ export default function Layout({ children }) {
             <DrawerContext.Consumer>
               {({ isOpen }) => <Drawer visible={isOpen} />}
             </DrawerContext.Consumer>
-            <main
+            <Segment
               style={{
                 height: "100vh",
                 paddingTop: "49px"
               }}
             >
               <Sidebar.Pusher>{children}</Sidebar.Pusher>
-            </main>
+            </Segment>
           </Sidebar.Pushable>
         </DrawerProvider>
       )}
