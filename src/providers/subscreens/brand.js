@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Form, Header, Image, Menu, Segment } from "semantic-ui-react";
 
 import { Theme } from "../../constants";
+import { BrandService } from "../../services";
 import { DrawerContext } from "../drawer";
 
 function AbstractBrandSubscreen({ close, id }) {
@@ -18,7 +19,10 @@ function AbstractBrandSubscreen({ close, id }) {
       initialValues={{
         name: ""
       }}
-      onSubmit={console.log}
+      onSubmit={({ name }) => {
+        BrandService.brand(id, name);
+        close();
+      }}
       render={({ handleSubmit, touched, errors }) => (
         <Form as={FormikForm}>
           <Segment

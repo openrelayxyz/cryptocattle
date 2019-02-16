@@ -1,6 +1,7 @@
 import React from "react";
 import { Header, Image, Menu, Segment, Table } from "semantic-ui-react";
 
+import { BrandService } from "../../services";
 import { DrawerContext, SubscreenType } from "../drawer";
 
 function AbstractCowSubscreen({
@@ -31,7 +32,7 @@ function AbstractCowSubscreen({
           margin: 0
         }}
       >
-        <Header content="Bob" subheader={description} />
+        <Header content={BrandService.getName(id)} subheader={description} />
       </Segment>
       <Segment attached>
         <Image src={image} />
