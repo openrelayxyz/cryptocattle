@@ -5,3 +5,10 @@
  */
 
 // You can delete this file if you're not using it
+const { Mock } = require("./mock");
+
+exports.onClientEntry = () => {
+  const mock = new Mock();
+
+  mock.generateLocalSet();
+};

@@ -1,11 +1,18 @@
-import Chance from "chance";
-
-import * as constants from "../constants";
+const Chance = require("chance");
 
 const chance = new Chance();
 const random = (min, max) => chance.integer({ min, max });
+const PersonalityType = {
+  Friendly: 0,
+  Standoffish: 1,
+  Confident: 2,
+  Snarky: 3,
+  Reserved: 4,
+  Shy: 5,
+  Energetic: 6
+};
 
-export default class Mock {
+exports.Mock = class Mock {
   generateCow() {
     const wordCount = random(3, 7);
     const cow = {
@@ -14,10 +21,7 @@ export default class Mock {
       attributes: {
         generation: random(0, 6),
         moofactoryPeriod: random(43200, 172800),
-        personalityType: random(
-          0,
-          Object.keys(constants.PersonalityType).length - 1
-        ),
+        personalityType: random(0, Object.keys(PersonalityType).length - 1),
         strength: random(1, 20),
         dexterity: random(1, 20),
         consitution: random(1, 20),
@@ -53,4 +57,4 @@ export default class Mock {
 
     console.info("Local set created. Moo!");
   }
-}
+};
