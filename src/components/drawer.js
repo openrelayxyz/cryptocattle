@@ -21,11 +21,13 @@ class AbstractDrawer extends Component {
         vertical
         visible={visible}
         style={{
-          height: "100vh",
+          minHeight: "100vh",
+          maxHeight: "100vh",
           padding: 0,
           background: "#fff",
           borderLeft: `2px solid ${Theme.primary}`,
-          overflowX: "hidden"
+          overflowX: "hidden",
+          overflowY: "auto"
         }}
       >
         <Menu

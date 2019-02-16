@@ -55,7 +55,17 @@ export default class SaleBarnPage extends Component {
                 title="Straws for Sale"
                 link="#"
                 description="Straws available on the marketplace."
-                tiles={limit(10, straws.map(({ image }) => ({ image })))}
+                tiles={limit(
+                  10,
+                  straws.map(straw => ({
+                    image: straw.image,
+                    onClick: () =>
+                      open(SubscreenType.StrawSubscreen, {
+                        straw,
+                        isOwned: false
+                      })
+                  }))
+                )}
               />
               <Divider />
               <TileSet
@@ -75,7 +85,17 @@ export default class SaleBarnPage extends Component {
                 title="My Listed Straws"
                 link="#"
                 description="Straws you are attempting to sell on the marketplace."
-                tiles={limit(10, listedStraws.map(({ image }) => ({ image })))}
+                tiles={limit(
+                  10,
+                  listedStraws.map(straw => ({
+                    image: straw.image,
+                    onClick: () =>
+                      open(SubscreenType.StrawSubscreen, {
+                        straw,
+                        isOwned: true
+                      })
+                  }))
+                )}
               />
             </>
           )}

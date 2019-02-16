@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 
-import { CowSubscreen, LinksSubscreen } from "./subscreens";
+import { CowSubscreen, LinksSubscreen, StrawSubscreen } from "./subscreens";
 
 export const SubscreenType = {
   LinksSubscreen: 0,
-  CowSubscreen: 1
+  CowSubscreen: 1,
+  StrawSubscreen: 2
 };
 
 export const subscreenTypeToComponent = {
   [SubscreenType.LinksSubscreen]: LinksSubscreen,
-  [SubscreenType.CowSubscreen]: CowSubscreen
+  [SubscreenType.CowSubscreen]: CowSubscreen,
+  [SubscreenType.StrawSubscreen]: StrawSubscreen
 };
 
 export const DrawerContext = React.createContext();
@@ -20,6 +22,9 @@ export default class DrawerProvider extends Component {
     subscreen: SubscreenType.LinksSubscreen,
     subscreenProps: {},
     open: (subscreen, subscreenProps) => {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+
       if (subscreen) {
         this.state.setSubscreen(subscreen);
       }
@@ -30,12 +35,15 @@ export default class DrawerProvider extends Component {
 
       this.setState({ isOpen: true });
     },
-    close: () =>
+    close: () => {
+      document.body.style.overflow = "initial";
+
       this.setState({
         isOpen: false,
         subscreen: SubscreenType.LinksSubscreen,
         subscreenProps: {}
-      }),
+      });
+    },
     setSubscreen: subscreen => this.setState({ subscreen }),
     setSubscreenProps: subscreenProps => this.setState({ subscreenProps })
   };

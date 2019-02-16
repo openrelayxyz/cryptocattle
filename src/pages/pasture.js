@@ -41,7 +41,17 @@ export default class PasturePage extends Component {
                 title="My Straws"
                 link="#"
                 description="Your collection of straws."
-                tiles={limit(10, straws.map(({ image }) => ({ image })))}
+                tiles={limit(
+                  10,
+                  straws.map(straw => ({
+                    image: straw.image,
+                    onClick: () =>
+                      open(SubscreenType.StrawSubscreen, {
+                        straw,
+                        isOwned: true
+                      })
+                  }))
+                )}
               />
             </>
           )}

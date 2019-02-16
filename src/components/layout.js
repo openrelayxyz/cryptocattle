@@ -27,6 +27,7 @@ export default function Layout({ children }) {
               {({ isOpen }) => <Drawer visible={isOpen} />}
             </DrawerContext.Consumer>
             <Segment
+              onScroll={console.log}
               style={{
                 minHeight: "100vh",
                 paddingTop: "49px"
