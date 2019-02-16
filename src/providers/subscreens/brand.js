@@ -6,8 +6,9 @@ import { Form, Header, Image, Menu, Segment } from "semantic-ui-react";
 import { Theme } from "../../constants";
 import { BrandService } from "../../services";
 import { DrawerContext } from "../drawer";
+import { MessengerContext } from "../messenger";
 
-function AbstractBrandSubscreen({ close, id }) {
+function AbstractBrandSubscreen({ close, id, showMessage }) {
   return (
     <Formik
       validationSchema={Yup.object().shape({
@@ -21,6 +22,9 @@ function AbstractBrandSubscreen({ close, id }) {
       }}
       onSubmit={({ name }) => {
         BrandService.brand(id, name);
+        showMessage({
+          content: `Successfully branded Cow #${id} as "${name}".`
+        });
         close();
       }}
       render={({ handleSubmit, touched, errors }) => (
@@ -95,7 +99,15 @@ export default function BrandSubscreen() {
   return (
     <DrawerContext.Consumer>
       {({ close, subscreenProps: { id } }) => (
-        <AbstractBrandSubscreen close={close} id={id} />
+        <MessengerContext.Consumer>
+          {({ showMessage }) => (
+            <AbstractBrandSubscreen
+              close={close}
+              id={id}
+              showMessage={showMessage}
+            />
+          )}
+        </MessengerContext.Consumer>
       )}
     </DrawerContext.Consumer>
   );

@@ -20,6 +20,7 @@
     "react-dom": "^16.8.2",
     "react-helmet": "^5.2.0",
     "react-onclickoutside": "^6.7.1",
+    "react-spring": "5.9.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.85.0",
     "yup": "^0.26.10"
