@@ -13,18 +13,21 @@ export default function Navbar() {
           widths={3}
           items={[
             {
+              key: 0,
               icon: "question circle",
               style: {
                 flex: 1
               }
             },
             {
+              key: 1,
               content: "CryptoCattle",
               style: {
                 flex: 3
               }
             },
             {
+              key: 2,
               icon: "bars",
               onClick: open,
               style: {

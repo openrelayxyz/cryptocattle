@@ -29,6 +29,7 @@ class AbstractDrawer extends Component {
           size="huge"
           items={[
             {
+              key: 0,
               icon: "close",
               position: "right",
               content: "Close",

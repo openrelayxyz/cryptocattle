@@ -28,7 +28,7 @@ export default function Layout({ children }) {
             </DrawerContext.Consumer>
             <Segment
               style={{
-                height: "100vh",
+                minHeight: "100vh",
                 paddingTop: "49px"
               }}
             >
