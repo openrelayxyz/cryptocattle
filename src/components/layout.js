@@ -2,6 +2,8 @@ import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import "semantic-ui-css/semantic.min.css";
 
+import Navbar from "./navbar";
+
 export default function Layout({ children }) {
   return (
     <StaticQuery
@@ -14,7 +16,12 @@ export default function Layout({ children }) {
           }
         }
       `}
-      render={data => <>{children}</>}
+      render={data => (
+        <>
+          <Navbar />
+          {children}
+        </>
+      )}
     />
   );
 }
