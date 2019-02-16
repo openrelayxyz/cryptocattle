@@ -6,15 +6,23 @@ import { getLocalCows, getLocalStraws } from "../helpers";
 import { DrawerContext, SubscreenType } from "../providers";
 
 const getUpstreamCows = () => {
-  const storedCows = window.localStorage.getItem("upstreamCows") || "[]";
+  if (typeof window !== "undefined") {
+    const storedCows = window.localStorage.getItem("upstreamCows") || "[]";
 
-  return JSON.parse(storedCows);
+    return JSON.parse(storedCows);
+  }
+
+  return [];
 };
 
 const getUpstreamStraws = () => {
-  const storedStraws = window.localStorage.getItem("upstreamStraws") || "[]";
+  if (typeof window !== "undefined") {
+    const storedStraws = window.localStorage.getItem("upstreamStraws") || "[]";
 
-  return JSON.parse(storedStraws);
+    return JSON.parse(storedStraws);
+  }
+
+  return [];
 };
 
 export default class SaleBarnPage extends Component {
