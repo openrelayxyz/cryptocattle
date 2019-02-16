@@ -11,6 +11,98 @@ const personalityTypes = [
   "Shy",
   "Energetic"
 ];
+const aspectTypes = {
+  tail: [
+    {
+      identifier: "poof",
+      size: "sm"
+    },
+    {
+      identifier: "star",
+      size: "md"
+    }
+  ],
+  leg: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  body: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  spot: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  horn: [
+    {
+      identifier: "flower",
+      size: "sm"
+    },
+    {
+      identifier: "horn",
+      size: "md"
+    }
+  ],
+  wing: [
+    {
+      identifier: "devil",
+      size: "sm"
+    },
+    {
+      identifier: "angel",
+      size: "lg"
+    }
+  ],
+  accessory: [
+    {
+      identifier: "bell",
+      size: "md"
+    },
+    {
+      identifier: "medal",
+      size: "md"
+    }
+  ],
+  emote: [
+    {
+      identifier: "smirk",
+      size: "md"
+    },
+    {
+      identifier: "alarmed",
+      size: "md"
+    }
+  ],
+  hair: [
+    {
+      identifier: "none",
+      size: "md"
+    },
+    {
+      identifier: "short",
+      size: "md"
+    }
+  ]
+};
 
 let cowCount = 0;
 let strawCount = 0;
@@ -22,6 +114,10 @@ exports.Mock = class Mock {
       id: ++cowCount,
       description: chance.sentence({ words: wordCount }),
       image: "https://placehold.it/64x64",
+      aspects: Object.entries(aspectTypes).reduce((prev, [key, value]) => {
+        prev[key] = value[random(0, value.length - 1)];
+        return prev;
+      }, {}),
       attributes: {
         generation: random(0, 6),
         moofactoryPeriod: random(43200, 172800),

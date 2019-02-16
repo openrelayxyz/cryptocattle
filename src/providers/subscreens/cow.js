@@ -4,12 +4,19 @@ import { Header, Image, Menu, Segment, Table } from "semantic-ui-react";
 import { BrandService } from "../../services";
 import { DrawerContext, SubscreenType } from "../drawer";
 
+const sizeToEnglish = {
+  sm: "small",
+  md: "medium",
+  lg: "large"
+};
+
 function AbstractCowSubscreen({
   open,
   cow: {
     id,
     image,
     description,
+    aspects: { horn, wing, hair, spot, accessory, body, emote, tail, leg },
     attributes: {
       generation,
       moofactoryPeriod,
@@ -59,6 +66,61 @@ function AbstractCowSubscreen({
             <Table.Row>
               <Table.Cell>Personality</Table.Cell>
               <Table.Cell textAlign="right">{personalityType}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+        <Table unstackable columns={2}>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell colSpan={2}>
+                <strong>Aspects</strong>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Horn</Table.Cell>
+              <Table.Cell textAlign="right">
+                {horn.identifier}, {sizeToEnglish[horn.size]}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Wing</Table.Cell>
+              <Table.Cell textAlign="right">
+                {wing.identifier}, {sizeToEnglish[wing.size]}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Hair</Table.Cell>
+              <Table.Cell textAlign="right">{hair.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Spot</Table.Cell>
+              <Table.Cell textAlign="right">{spot.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Accessory</Table.Cell>
+              <Table.Cell textAlign="right">{accessory.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Body</Table.Cell>
+              <Table.Cell textAlign="right">{body.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Emote</Table.Cell>
+              <Table.Cell textAlign="right">{emote.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Tail</Table.Cell>
+              <Table.Cell textAlign="right">
+                {tail.identifier}, {sizeToEnglish[tail.size]}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Leg</Table.Cell>
+              <Table.Cell textAlign="right">{leg.identifier}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Hair</Table.Cell>
+              <Table.Cell textAlign="right">{hair.identifier}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
