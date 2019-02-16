@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 
-import { CowSubscreen, LinksSubscreen, StrawSubscreen } from "./subscreens";
+import {
+  BrandSubscreen,
+  CowSubscreen,
+  LinksSubscreen,
+  StrawSubscreen
+} from "./subscreens";
 
 export const SubscreenType = {
   LinksSubscreen: 0,
   CowSubscreen: 1,
-  StrawSubscreen: 2
+  StrawSubscreen: 2,
+  BrandSubscreen: 3
 };
 
 export const subscreenTypeToComponent = {
   [SubscreenType.LinksSubscreen]: LinksSubscreen,
   [SubscreenType.CowSubscreen]: CowSubscreen,
-  [SubscreenType.StrawSubscreen]: StrawSubscreen
+  [SubscreenType.StrawSubscreen]: StrawSubscreen,
+  [SubscreenType.BrandSubscreen]: BrandSubscreen
 };
 
 export const DrawerContext = React.createContext();

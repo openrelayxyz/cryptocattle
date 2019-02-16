@@ -1,9 +1,10 @@
 import React from "react";
 import { Header, Image, Menu, Segment, Table } from "semantic-ui-react";
 
-import { DrawerContext } from "../drawer";
+import { DrawerContext, SubscreenType } from "../drawer";
 
 function AbstractCowSubscreen({
+  open,
   cow: {
     id,
     image,
@@ -103,7 +104,16 @@ function AbstractCowSubscreen({
             icon: "users",
             content: "Cowpare"
           }
-        ]}
+        ].concat(
+          isOwned
+            ? {
+                key: 2,
+                icon: "user",
+                content: "Brand",
+                onClick: () => open(SubscreenType.BrandSubscreen, { id })
+              }
+            : null
+        )}
       />
     </>
   );
@@ -112,8 +122,8 @@ function AbstractCowSubscreen({
 export default function CowSubscreen() {
   return (
     <DrawerContext.Consumer>
-      {({ subscreenProps: { cow, isOwned } }) => (
-        <AbstractCowSubscreen cow={cow} isOwned={isOwned} />
+      {({ open, subscreenProps: { cow, isOwned } }) => (
+        <AbstractCowSubscreen open={open} cow={cow} isOwned={isOwned} />
       )}
     </DrawerContext.Consumer>
   );
