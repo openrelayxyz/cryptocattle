@@ -4,7 +4,7 @@ import { Button, Header, Image, Segment } from "semantic-ui-react";
 import Panel from "./panel";
 import Tile from "./tile";
 
-export default function TileSet({ title, link, tiles }) {
+export default function TileSet({ title, link, description, tiles }) {
   return (
     <>
       <Segment basic attached="top">
@@ -18,6 +18,7 @@ export default function TileSet({ title, link, tiles }) {
         >
           <div>{title}</div> <small>view all</small>
         </Header>
+        {description}
       </Segment>
       <Panel attached="bottom">
         {tiles.map((tile, index) => (

@@ -11,4 +11,5 @@ exports.onClientEntry = () => {
   const mock = new Mock();
 
   mock.generateLocalSet();
+  mock.generateUpstreamSet();
 };

@@ -2,19 +2,7 @@ import React, { Component } from "react";
 
 import pasture from "../assets/pasture.svg";
 import { Hero, Layout, TileSet } from "../components";
-import { limit } from "../helpers";
-
-const getLocalCows = () => {
-  const storedCows = window.localStorage.getItem("cows") || "[]";
-
-  return JSON.parse(storedCows);
-};
-
-const getLocalStraws = () => {
-  const storedStraws = window.localStorage.getItem("straws") || "[]";
-
-  return JSON.parse(storedStraws);
-};
+import { limit, getLocalCows, getLocalStraws } from "../helpers";
 
 export default class PasturePage extends Component {
   state = {
@@ -35,11 +23,13 @@ export default class PasturePage extends Component {
         <TileSet
           title="My Cows"
           link="#"
+          description="Your collection of cows."
           tiles={limit(10, cows.map(({ image }) => ({ image })))}
         />
         <TileSet
           title="My Straws"
           link="#"
+          description="Your collection of straws."
           tiles={limit(10, straws.map(({ image }) => ({ image })))}
         />
       </Layout>

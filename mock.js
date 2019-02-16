@@ -2,6 +2,7 @@ const Chance = require("chance");
 
 const chance = new Chance();
 const random = (min, max) => chance.integer({ min, max });
+
 const PersonalityType = {
   Friendly: 0,
   Standoffish: 1,
@@ -12,10 +13,14 @@ const PersonalityType = {
   Energetic: 6
 };
 
+let cowCount = 0;
+let strawCount = 0;
+
 exports.Mock = class Mock {
-  generateCow() {
+  generateCow(override) {
     const wordCount = random(3, 7);
     const cow = {
+      id: ++cowCount,
       description: chance.sentence({ words: wordCount }),
       image: "https://placehold.it/64x64",
       attributes: {
@@ -28,19 +33,24 @@ exports.Mock = class Mock {
         intelligence: random(1, 20),
         wisdom: random(1, 20),
         charisma: random(1, 20)
-      }
+      },
+      forSale: chance.bool(),
+      ...override
     };
 
     return cow;
   }
 
-  generateStraw() {
+  generateStraw(override) {
     const straw = {
+      id: ++strawCount,
       image: "https://placehold.it/64x64",
       attributes: {
         frozen: chance.bool(),
         parentId: random(1, 100000)
-      }
+      },
+      forSale: chance.bool(),
+      ...override
     };
 
     return straw;
@@ -52,9 +62,25 @@ exports.Mock = class Mock {
     const cows = Array.from({ length: cowCount }, this.generateCow);
     const straws = Array.from({ length: strawCount }, this.generateStraw);
 
-    window.localStorage.setItem("cows", JSON.stringify(cows));
-    window.localStorage.setItem("straws", JSON.stringify(straws));
+    window.localStorage.setItem("localCows", JSON.stringify(cows));
+    window.localStorage.setItem("localStraws", JSON.stringify(straws));
 
     console.info("Local set created. Moo!");
+  }
+
+  generateUpstreamSet() {
+    const cowCount = random(500, 2000);
+    const strawCount = random(500, 2000);
+    const cows = Array.from({ length: cowCount }, () =>
+      this.generateCow({ forSale: true })
+    );
+    const straws = Array.from({ length: strawCount }, () =>
+      this.generateStraw({ forSale: true })
+    );
+
+    window.localStorage.setItem("upstreamCows", JSON.stringify(cows));
+    window.localStorage.setItem("upstreamStraws", JSON.stringify(straws));
+
+    console.info("Upstream set created. Moo!");
   }
 };
