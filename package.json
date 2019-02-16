@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "chance": "^1.0.18",
     "gatsby": "^2.1.4",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-manifest": "^2.0.17",
@@ -16,7 +17,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.85.0"
   },
   "keywords": [
     "gatsby"
