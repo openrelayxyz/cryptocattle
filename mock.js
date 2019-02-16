@@ -2,16 +2,15 @@ const Chance = require("chance");
 
 const chance = new Chance();
 const random = (min, max) => chance.integer({ min, max });
-
-const PersonalityType = {
-  Friendly: 0,
-  Standoffish: 1,
-  Confident: 2,
-  Snarky: 3,
-  Reserved: 4,
-  Shy: 5,
-  Energetic: 6
-};
+const personalityTypes = [
+  "Friendly",
+  "Standoffish",
+  "Confident",
+  "Snarky",
+  "Reserved",
+  "Shy",
+  "Energetic"
+];
 
 let cowCount = 0;
 let strawCount = 0;
@@ -26,10 +25,11 @@ exports.Mock = class Mock {
       attributes: {
         generation: random(0, 6),
         moofactoryPeriod: random(43200, 172800),
-        personalityType: random(0, Object.keys(PersonalityType).length - 1),
+        personalityType:
+          personalityTypes[random(0, personalityTypes.length - 1)],
         strength: random(1, 20),
         dexterity: random(1, 20),
-        consitution: random(1, 20),
+        constitution: random(1, 20),
         intelligence: random(1, 20),
         wisdom: random(1, 20),
         charisma: random(1, 20)

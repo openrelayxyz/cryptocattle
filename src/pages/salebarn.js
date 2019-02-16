@@ -3,6 +3,7 @@ import { Divider } from "semantic-ui-react";
 
 import { Hero, Layout, TileSet } from "../components";
 import { limit, getLocalCows, getLocalStraws } from "../helpers";
+import { DrawerContext, SubscreenType } from "../providers";
 
 const getUpstreamCows = () => {
   const storedCows = window.localStorage.getItem("upstreamCows") || "[]";
@@ -34,31 +35,51 @@ export default class SaleBarnPage extends Component {
           title="Sale Barn"
           description="Buy new Cows and Straws and view the ones you have for sale."
         />
-        <TileSet
-          title="Cows for Sale"
-          link="#"
-          description="Cows available on the marketplace."
-          tiles={limit(10, cows.map(({ image }) => ({ image })))}
-        />
-        <TileSet
-          title="Straws for Sale"
-          link="#"
-          description="Straws available on the marketplace."
-          tiles={limit(10, straws.map(({ image }) => ({ image })))}
-        />
-        <Divider />
-        <TileSet
-          title="My Listed Cows"
-          link="#"
-          description="Cows you are attempting to sell on the marketplace."
-          tiles={limit(10, listedCows.map(({ image }) => ({ image })))}
-        />
-        <TileSet
-          title="My Listed Straws"
-          link="#"
-          description="Straws you are attempting to sell on the marketplace."
-          tiles={limit(10, listedStraws.map(({ image }) => ({ image })))}
-        />
+        <DrawerContext.Consumer>
+          {({ open }) => (
+            <>
+              <TileSet
+                title="Cows for Sale"
+                link="#"
+                description="Cows available on the marketplace."
+                tiles={limit(
+                  10,
+                  cows.map(cow => ({
+                    image: cow.image,
+                    onClick: () =>
+                      open(SubscreenType.CowSubscreen, { cow, isOwned: false })
+                  }))
+                )}
+              />
+              <TileSet
+                title="Straws for Sale"
+                link="#"
+                description="Straws available on the marketplace."
+                tiles={limit(10, straws.map(({ image }) => ({ image })))}
+              />
+              <Divider />
+              <TileSet
+                title="My Listed Cows"
+                link="#"
+                description="Cows you are attempting to sell on the marketplace."
+                tiles={limit(
+                  10,
+                  listedCows.map(cow => ({
+                    image: cow.image,
+                    onClick: () =>
+                      open(SubscreenType.CowSubscreen, { cow, isOwned: true })
+                  }))
+                )}
+              />
+              <TileSet
+                title="My Listed Straws"
+                link="#"
+                description="Straws you are attempting to sell on the marketplace."
+                tiles={limit(10, listedStraws.map(({ image }) => ({ image })))}
+              />
+            </>
+          )}
+        </DrawerContext.Consumer>
       </Layout>
     );
   }

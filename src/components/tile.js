@@ -1,11 +1,10 @@
 import React from "react";
 import { Image } from "semantic-ui-react";
 
-import { Theme } from "../constants";
-
-export default function Tile({ image }) {
+export default function Tile({ image, onClick }) {
   return (
     <div
+      onClick={onClick}
       style={{
         display: "inline-block",
         marginRight: "0.5rem",

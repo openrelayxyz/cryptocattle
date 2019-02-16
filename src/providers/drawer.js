@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 
-import { LinksSubscreen } from "./subscreens";
+import { CowSubscreen, LinksSubscreen } from "./subscreens";
 
 export const SubscreenType = {
-  LinksSubscreen: 0
+  LinksSubscreen: 0,
+  CowSubscreen: 1
 };
 
 export const subscreenTypeToComponent = {
-  [SubscreenType.LinksSubscreen]: LinksSubscreen
+  [SubscreenType.LinksSubscreen]: LinksSubscreen,
+  [SubscreenType.CowSubscreen]: CowSubscreen
 };
 
 export const DrawerContext = React.createContext();
@@ -16,15 +18,26 @@ export default class DrawerProvider extends Component {
   state = {
     isOpen: false,
     subscreen: SubscreenType.LinksSubscreen,
-    open: subscreen => {
+    subscreenProps: {},
+    open: (subscreen, subscreenProps) => {
       if (subscreen) {
         this.state.setSubscreen(subscreen);
       }
 
+      if (subscreenProps) {
+        this.state.setSubscreenProps(subscreenProps);
+      }
+
       this.setState({ isOpen: true });
     },
-    close: () => this.setState({ isOpen: false }),
-    setSubscreen: subscreen => this.setState({ subscreen })
+    close: () =>
+      this.setState({
+        isOpen: false,
+        subscreen: SubscreenType.LinksSubscreen,
+        subscreenProps: {}
+      }),
+    setSubscreen: subscreen => this.setState({ subscreen }),
+    setSubscreenProps: subscreenProps => this.setState({ subscreenProps })
   };
 
   render() {

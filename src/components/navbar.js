@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import { Menu } from "semantic-ui-react";
-import { Icon } from "semantic-ui-react";
 
 import { DrawerContext, SubscreenType } from "../providers";
 

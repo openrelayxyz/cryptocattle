@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header, Image, Segment } from "semantic-ui-react";
+import { Header, Segment } from "semantic-ui-react";
 
 import Panel from "./panel";
 import Tile from "./tile";

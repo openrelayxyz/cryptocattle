@@ -5,6 +5,7 @@ import { Menu } from "semantic-ui-react";
 export default function LinksSubscreen() {
   return (
     <Menu
+      size="massive"
       fluid
       vertical
       items={[
