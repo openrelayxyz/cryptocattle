@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 
 import { Hero, Layout, Panel } from "../components";
 
-export default function IndexPage() {
+export default function IndexPage({ navigate }) {
   return (
     <Layout>
       <Hero
@@ -20,7 +20,7 @@ export default function IndexPage() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </Panel>
-      <Button primary attached="bottom">
+      <Button primary attached="bottom" onClick={() => navigate("/pasture")}>
         Get Started
       </Button>
     </Layout>

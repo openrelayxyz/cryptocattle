@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "gatsby";
 import { Menu } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 
 import { DrawerContext } from "../providers";
 
@@ -14,14 +16,18 @@ export default function Navbar() {
           items={[
             {
               key: 0,
-              icon: "question circle",
+              content: (
+                <Link to="/">
+                  <Icon name="question circle" />
+                </Link>
+              ),
               style: {
                 flex: 1
               }
             },
             {
               key: 1,
-              content: "CryptoCattle",
+              content: <Link to="/">CryptoCattle</Link>,
               style: {
                 flex: 3
               }
