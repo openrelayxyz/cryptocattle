@@ -16,18 +16,18 @@ export default function Navbar() {
           items={[
             {
               key: 0,
-              content: (
-                <Link to="/">
-                  <Icon name="question circle" />
-                </Link>
-              ),
+              as: Link,
+              to: "/",
+              icon: "question circle",
               style: {
                 flex: 1
               }
             },
             {
               key: 1,
-              content: <Link to="/">CryptoCattle</Link>,
+              as: Link,
+              to: "/",
+              content: "CryptoCattle",
               style: {
                 flex: 3
               }
