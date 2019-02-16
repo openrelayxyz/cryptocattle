@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { Menu } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
 
-import { DrawerContext } from "../providers";
+import { DrawerContext, SubscreenType } from "../providers";
 
 export default function Navbar() {
   return (
@@ -35,7 +35,7 @@ export default function Navbar() {
             {
               key: 2,
               icon: "bars",
-              onClick: open,
+              onClick: () => open(SubscreenType.LinksSubscreen),
               style: {
                 flex: 1
               }

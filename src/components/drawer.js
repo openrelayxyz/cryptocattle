@@ -3,13 +3,14 @@ import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import onClickOutside from "react-onclickoutside";
 
 import { Theme } from "../constants";
-import { DrawerContext } from "../providers";
+import { DrawerContext, subscreenTypeToComponent } from "../providers";
 
 class AbstractDrawer extends Component {
   handleClickOutside = () => this.props.close();
 
   render() {
-    const { close, visible } = this.props;
+    const { close, visible, subscreen } = this.props;
+    const ActiveSubscreen = subscreenTypeToComponent[subscreen];
 
     return (
       <Sidebar
@@ -37,11 +38,13 @@ class AbstractDrawer extends Component {
             }
           ]}
           style={{
+            margin: 0,
             borderRadius: 0,
             borderLeft: "none",
             borderRight: "none"
           }}
         />
+        <ActiveSubscreen />
       </Sidebar>
     );
   }
@@ -52,7 +55,13 @@ const WrappedAbstractDrawer = onClickOutside(AbstractDrawer);
 export default function Drawer({ visible }) {
   return (
     <DrawerContext.Consumer>
-      {({ close }) => <WrappedAbstractDrawer close={close} visible={visible} />}
+      {({ close, subscreen }) => (
+        <WrappedAbstractDrawer
+          close={close}
+          visible={visible}
+          subscreen={subscreen}
+        />
+      )}
     </DrawerContext.Consumer>
   );
 }
