@@ -103,6 +103,7 @@ export default class Upstream {
         const getTokenOfOwnerByIndex = (address, index) =>
           new Promise((resolve, reject) =>
             strawContract.tokenOfOwnerByIndex(address, index, (err, tokenId) =>
+              // TODO: Potential bug in contract necessitates this workaround; will eventually be fixed upstream.
               err ? resolve(null) : resolve(tokenId)
             )
           );
@@ -123,7 +124,7 @@ export default class Upstream {
             },
             (_, i) =>
               getTokenOfOwnerByIndex(currentAddress, i).then(
-                result => result && result.toString()
+                result => result && result.toFixed(0)
               )
           )
         );
