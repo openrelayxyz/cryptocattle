@@ -28,7 +28,7 @@ export default class TransformerService {
       accessories: "accessory",
       hair: "hair"
     };
-    const attributes = [
+    const attributeTypes = [
       "strength",
       "dexterity",
       "constitution",
@@ -48,7 +48,7 @@ export default class TransformerService {
           prev.aspects[aspectToProperty[trait_type]] = value;
         }
 
-        if (attributes.includes(trait_type)) {
+        if (attributeTypes.includes(trait_type)) {
           prev.attributes[trait_type] = value;
         }
 
