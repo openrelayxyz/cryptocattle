@@ -4,7 +4,9 @@ import {
   BrandSubscreen,
   CowSubscreen,
   CowpareSubscreen,
+  FreezeSubscreen,
   LinksSubscreen,
+  SellSubscreen,
   StrawSubscreen
 } from "./subscreens";
 
@@ -13,7 +15,9 @@ export const SubscreenType = {
   CowSubscreen: 1,
   StrawSubscreen: 2,
   BrandSubscreen: 3,
-  CowpareSubscreen: 4
+  CowpareSubscreen: 4,
+  SellSubscreen: 5,
+  FreezeSubscreen: 6
 };
 
 export const subscreenTypeToComponent = {
@@ -21,7 +25,9 @@ export const subscreenTypeToComponent = {
   [SubscreenType.CowSubscreen]: CowSubscreen,
   [SubscreenType.StrawSubscreen]: StrawSubscreen,
   [SubscreenType.BrandSubscreen]: BrandSubscreen,
-  [SubscreenType.CowpareSubscreen]: CowpareSubscreen
+  [SubscreenType.CowpareSubscreen]: CowpareSubscreen,
+  [SubscreenType.SellSubscreen]: SellSubscreen,
+  [SubscreenType.FreezeSubscreen]: FreezeSubscreen
 };
 
 export const subscreenTypeToTitle = {
@@ -29,7 +35,9 @@ export const subscreenTypeToTitle = {
   [SubscreenType.CowSubscreen]: "Viewing a Cow",
   [SubscreenType.StrawSubscreen]: "Viewing a Straw",
   [SubscreenType.BrandSubscreen]: "Brand a Cow",
-  [SubscreenType.CowpareSubscreen]: "Compare Cows"
+  [SubscreenType.CowpareSubscreen]: "Compare Cows",
+  [SubscreenType.SellSubscreen]: "Sell Something",
+  [SubscreenType.FreezeSubscreen]: "Freeze a Straw"
 };
 
 export const DrawerContext = React.createContext();

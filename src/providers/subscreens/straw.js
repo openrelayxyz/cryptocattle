@@ -1,17 +1,16 @@
 import React from "react";
 import { Image, Menu, Segment } from "semantic-ui-react";
 
-import { DrawerContext } from "../drawer";
+import { DrawerContext, SubscreenType } from "../drawer";
 
-function AbstractStrawSubscreen({
-  straw: {
+function AbstractStrawSubscreen({ open, straw, isOwned }) {
+  const {
     id,
     image,
     attributes: { frozen, parentId },
     forSale
-  },
-  isOwned
-}) {
+  } = straw;
+
   return (
     <>
       <Segment
@@ -32,7 +31,9 @@ function AbstractStrawSubscreen({
             key: 0,
             icon: "usd",
             content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale",
-            className: "fancy"
+            className: "fancy",
+            onClick: () =>
+              open(SubscreenType.SellSubscreen, { type: "straw", straw })
           }
         ].concat(
           isOwned
@@ -40,7 +41,8 @@ function AbstractStrawSubscreen({
                 key: 1,
                 icon: "snowflake",
                 content: frozen ? "Unfreeze" : "Freeze",
-                className: "fancy"
+                className: "fancy",
+                onClick: () => open(SubscreenType.FreezeSubscreen, { straw })
               }
             : null
         )}
@@ -52,8 +54,8 @@ function AbstractStrawSubscreen({
 export default function StrawSubscreen() {
   return (
     <DrawerContext.Consumer>
-      {({ subscreenProps: { straw, isOwned } }) => (
-        <AbstractStrawSubscreen straw={straw} isOwned={isOwned} />
+      {({ open, subscreenProps: { straw, isOwned } }) => (
+        <AbstractStrawSubscreen open={open} straw={straw} isOwned={isOwned} />
       )}
     </DrawerContext.Consumer>
   );

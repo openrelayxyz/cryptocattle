@@ -37,7 +37,9 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
             key: 0,
             icon: "usd",
             content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale",
-            className: "fancy"
+            className: "fancy",
+            onClick: () =>
+              open(SubscreenType.SellSubscreen, { type: "cow", cow })
           },
           {
             key: 1,
