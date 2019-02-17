@@ -81,10 +81,13 @@ export default class TileSet extends Component {
   };
 
   toggleViewingAll = () =>
-    this.setState(prevState => ({
-      viewingAll: !prevState.viewingAll,
-      viewingAspectFilter: false
-    }));
+    this.setState(
+      prevState => ({
+        viewingAll: !prevState.viewingAll,
+        viewingAspectFilter: false
+      }),
+      this.reset
+    );
 
   toggleViewingAspectFilter = () =>
     this.setState(prevState => ({
@@ -119,24 +122,53 @@ export default class TileSet extends Component {
   getCollection = () => {
     const { viewingAll, sortBy, orderBy, personality } = this.state;
     const { tiles } = this.props;
+    const conditions = {};
 
     if (!viewingAll) {
       return limit(10, tiles);
     }
 
-    let collection = tiles;
-
     if (personality !== "any") {
-      collection = collection.filter(
-        cow => cow.attributes.personalityType === personality
-      );
+      conditions.personalityType = personality;
     }
+
+    Object.keys(aspectTypes).forEach(type => {
+      if (this.state[type] !== "any") {
+        conditions[type] = this.state[type];
+      }
+    });
+
+    const filteredCollection = tiles.filter(cow => {
+      if (
+        conditions.personalityType &&
+        cow.attributes.personalityType !== conditions.personalityType
+      ) {
+        return false;
+      }
+
+      let fulfillsAspectConditions = true;
+
+      Object.keys(aspectTypes).forEach(type => {
+        if (conditions[type]) {
+          const [identifier, size] = this.state[type].split("_");
+
+          if (
+            cow.aspects[type].identifier !== identifier ||
+            cow.aspects[type].size !== size
+          ) {
+            fulfillsAspectConditions = false;
+          }
+        }
+      });
+
+      return fulfillsAspectConditions;
+    });
 
     if (sortBy !== "any" && orderBy !== "any") {
-      collection = orderFunctions[orderBy](collection, sortBy);
+      return orderFunctions[orderBy](filteredCollection, sortBy);
     }
 
-    return collection;
+    return filteredCollection;
   };
 
   getAppliedFilter = () => {
@@ -172,7 +204,9 @@ export default class TileSet extends Component {
       return false;
     }
 
-    let phrase = "Showing X cows,";
+    const amount = this.getCollection().length;
+
+    let phrase = `Showing ${amount} cows,`;
 
     if (sortedAndOrdered) {
       phrase += ` sorted by ${sortBy}, ordered ${orderToEnglish[orderBy]},`;
@@ -274,7 +308,7 @@ export default class TileSet extends Component {
               <Icon name="close" /> Close
             </Menu.Item>
             {Object.entries(aspectTypes).map(([key, value]) => (
-              <Menu.Item>
+              <Menu.Item key={key}>
                 <label
                   style={{
                     fontWeight: "bold",

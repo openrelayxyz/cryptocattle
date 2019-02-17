@@ -51,7 +51,7 @@ export default class SaleBarnPage extends Component {
                 link="#"
                 description="Cows available on the marketplace."
                 tiles={cows.map(cow => ({
-                  image: cow.image,
+                  ...cow,
                   onClick: () =>
                     open(SubscreenType.CowSubscreen, { cow, isOwned: false })
                 }))}
@@ -75,7 +75,7 @@ export default class SaleBarnPage extends Component {
                 link="#"
                 description="Cows you are attempting to sell on the marketplace."
                 tiles={listedCows.map(cow => ({
-                  image: cow.image,
+                  ...cow,
                   onClick: () =>
                     open(SubscreenType.CowSubscreen, { cow, isOwned: true })
                 }))}
