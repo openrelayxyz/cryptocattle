@@ -209,7 +209,9 @@ export default class TileSet extends Component {
     let phrase = `Showing ${amount} cows,`;
 
     if (sortedAndOrdered) {
-      phrase += ` sorted by ${sortBy}, ordered ${orderToEnglish[orderBy]},`;
+      phrase += ` sorted by ${
+        sortBy === "moofactoryPeriod" ? "moofactory period" : sortBy
+      }, ordered ${orderToEnglish[orderBy]},`;
     }
 
     if (personalitySelected) {

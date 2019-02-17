@@ -21,12 +21,20 @@ export const subscreenTypeToComponent = {
   [SubscreenType.BrandSubscreen]: BrandSubscreen
 };
 
+export const subscreenTypeToTitle = {
+  [SubscreenType.LinksSubscreen]: "Links",
+  [SubscreenType.CowSubscreen]: "Viewing a Cow",
+  [SubscreenType.StrawSubscreen]: "Viewing a Straw",
+  [SubscreenType.BrandSubscreen]: "Brand a Cow"
+};
+
 export const DrawerContext = React.createContext();
 
 export default class DrawerProvider extends Component {
   state = {
     isOpen: false,
     subscreen: SubscreenType.LinksSubscreen,
+    subscreenTitle: subscreenTypeToTitle[SubscreenType.LinksSubscreen],
     subscreenProps: {},
     open: (subscreen, subscreenProps) => {
       window.scrollTo(0, 0);
@@ -51,7 +59,11 @@ export default class DrawerProvider extends Component {
         subscreenProps: {}
       });
     },
-    setSubscreen: subscreen => this.setState({ subscreen }),
+    setSubscreen: subscreen =>
+      this.setState({
+        subscreen,
+        subscreenTitle: subscreenTypeToTitle[subscreen]
+      }),
     setSubscreenProps: subscreenProps => this.setState({ subscreenProps })
   };
 

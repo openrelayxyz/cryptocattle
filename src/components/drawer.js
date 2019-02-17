@@ -9,7 +9,7 @@ class AbstractDrawer extends Component {
   handleClickOutside = () => this.props.close();
 
   render() {
-    const { close, visible, subscreen } = this.props;
+    const { close, visible, subscreen, title } = this.props;
     const ActiveSubscreen = subscreenTypeToComponent[subscreen];
 
     return (
@@ -35,6 +35,11 @@ class AbstractDrawer extends Component {
           items={[
             {
               key: 0,
+              icon: "hand point right outline",
+              content: title
+            },
+            {
+              key: 1,
               icon: "close",
               position: "right",
               content: "Close",
@@ -59,11 +64,12 @@ const WrappedAbstractDrawer = onClickOutside(AbstractDrawer);
 export default function Drawer({ visible }) {
   return (
     <DrawerContext.Consumer>
-      {({ close, subscreen }) => (
+      {({ close, subscreen, subscreenTitle }) => (
         <WrappedAbstractDrawer
           close={close}
           visible={visible}
           subscreen={subscreen}
+          title={subscreenTitle}
         />
       )}
     </DrawerContext.Consumer>
