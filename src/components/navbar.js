@@ -36,7 +36,7 @@ export default function Navbar() {
               as: Link,
               to: "/",
               content: (
-                <Header as="h1" content="CryptoCattle" className="fancy" />
+                <Header as="h2" content="CryptoCattle" className="fancy" />
               ),
               style: {
                 flex: 3
