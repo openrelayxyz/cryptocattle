@@ -103,15 +103,13 @@ export default class Upstream {
         const getTokenOfOwnerByIndex = (address, index) =>
           new Promise((resolve, reject) =>
             strawContract.tokenOfOwnerByIndex(address, index, (err, tokenId) =>
-              err ? reject(err) : resolve(tokenId)
+              err ? resolve(null) : resolve(tokenId)
             )
           );
         const getTokenUri = tokenId =>
           new Promise((resolve, reject) =>
             strawContract.tokenURI(tokenId, (err, metadataUrl) =>
-              console.log(metadataUrl) || err
-                ? reject(err)
-                : resolve(metadataUrl)
+              err ? reject(err) : resolve(metadataUrl)
             )
           );
         const count = await getBalanceOf(currentAddress).then(result =>
@@ -124,14 +122,14 @@ export default class Upstream {
               length: count
             },
             (_, i) =>
-              getTokenOfOwnerByIndex(currentAddress, i).then(result =>
-                result.toString()
+              getTokenOfOwnerByIndex(currentAddress, i).then(
+                result => result && result.toString()
               )
           )
         );
         console.log("\n\n\n", "tokenIds", tokenIds, "\n\n\n");
         const metadataUrls = await Promise.all(
-          tokenIds.map(id => getTokenUri(id))
+          tokenIds.filter(Boolean).map(id => getTokenUri(id))
         );
         console.log("\n\n\n", "metadataUrls", metadataUrls, "\n\n\n");
         const straws = await Promise.all(
