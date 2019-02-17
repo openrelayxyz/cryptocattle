@@ -281,7 +281,7 @@ export default class TileSet extends Component {
           >
             <div>{title}</div>{" "}
             <small onClick={this.toggleViewingAll}>
-              view {viewingAll ? "less" : "all"}
+              {viewingAll ? "less" : "all"}
             </small>
           </Header>
           {description}

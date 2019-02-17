@@ -14,6 +14,7 @@ class AbstractDrawer extends Component {
 
     return (
       <Sidebar
+        id="drawer"
         as={Segment}
         animation="overlay"
         width="wide"
