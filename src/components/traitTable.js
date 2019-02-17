@@ -1,5 +1,9 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
+import Chance from "chance";
+
+const chance = new Chance();
+const random = (min, max) => chance.integer({ min, max });
 
 export default function TraitTable({ cows }) {
   const Cell = ({ children }) => (
@@ -19,7 +23,7 @@ export default function TraitTable({ cows }) {
         <Table.Row>
           <Table.Cell>Generation</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>{cow.attributes.generation}</Cell>
+            <Cell key={index}>{random(0, 6)}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
