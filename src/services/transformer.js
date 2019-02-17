@@ -61,5 +61,7 @@ export default class TransformerService {
         attributes: {}
       }
     );
+
+    return cow;
   }
 }
