@@ -14,8 +14,10 @@ export default class IndexPage extends Component {
       }
 
       const cows = await UpstreamService.getMyCows();
+      const straws = await UpstreamService.getMyStraws();
 
       console.log("\n\n\n", "cows", cows, "\n\n\n");
+      console.log("\n\n\n", "straws", straws, "\n\n\n");
     } catch (err) {
       console.log("hmm");
     }
