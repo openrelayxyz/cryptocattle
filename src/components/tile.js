@@ -14,7 +14,13 @@ export default function Tile({ image, onClick }) {
         cursor: "pointer"
       }}
     >
-      <Image src={image} />
+      <Image
+        src={image}
+        style={{
+          width: "48px",
+          height: "48px"
+        }}
+      />
     </div>
   );
 }

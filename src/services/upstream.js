@@ -152,7 +152,6 @@ export default class Upstream {
         const count = await getBalanceOf(currentAddress).then(result =>
           result.toNumber()
         );
-        console.log("\n\n\n", "count", count, "\n\n\n");
         const tokenIds = await Promise.all(
           Array.from(
             {
@@ -164,11 +163,9 @@ export default class Upstream {
               )
           )
         );
-        console.log("\n\n\n", "tokenIds", tokenIds, "\n\n\n");
         const metadataUrls = await Promise.all(
           tokenIds.filter(Boolean).map(id => getTokenUri(id))
         );
-        console.log("\n\n\n", "metadataUrls", metadataUrls, "\n\n\n");
         const straws = await Promise.all(
           metadataUrls.map(url => axios.get(url).then(payload => payload.data))
         );
@@ -178,7 +175,6 @@ export default class Upstream {
         return straws;
       }
     } catch (err) {
-      console.log("\n\n\n", "err", err, "\n\n\n");
       return [];
     }
   }
