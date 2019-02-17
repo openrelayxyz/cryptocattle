@@ -4,6 +4,7 @@ import { Divider } from "semantic-ui-react";
 import barn from "../assets/barn.svg";
 import dollarCow from "../assets/cow_dollar.svg";
 import dollarStraw from "../assets/straw_dollar.svg";
+import basicStraw from "../assets/straw_basic.svg";
 import listCow from "../assets/cow_list.svg";
 import listStraw from "../assets/straw_list.svg";
 import { Hero, Layout, TileSet } from "../components";
@@ -79,7 +80,7 @@ export default class SaleBarnPage extends Component {
                 image={dollarStraw}
                 title="Straws for Sale"
                 tiles={straws.map(straw => ({
-                  image: straw.image,
+                  image: basicStraw,
                   onClick: () =>
                     open(SubscreenType.StrawSubscreen, {
                       straw,
@@ -101,7 +102,7 @@ export default class SaleBarnPage extends Component {
                 image={listStraw}
                 title="My Listed Straws"
                 tiles={listedStraws.map(straw => ({
-                  image: straw.image,
+                  image: basicStraw,
                   onClick: () =>
                     open(SubscreenType.StrawSubscreen, {
                       straw,

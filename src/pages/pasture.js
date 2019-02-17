@@ -54,7 +54,7 @@ export default class PasturePage extends Component {
                 image={basicStraw}
                 title="My Straws"
                 tiles={straws.map(straw => ({
-                  image: straw.image,
+                  image: basicStraw,
                   onClick: () =>
                     open(SubscreenType.StrawSubscreen, {
                       straw,
