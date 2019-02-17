@@ -208,12 +208,6 @@ export default class TileSet extends Component {
 
     let phrase = `Showing ${amount} cows,`;
 
-    if (sortedAndOrdered) {
-      phrase += ` sorted by ${
-        sortBy === "moofactoryPeriod" ? "moofactory period" : sortBy
-      }, ordered ${orderToEnglish[orderBy]},`;
-    }
-
     if (personalitySelected) {
       const startsWithVowel = ["a", "e", "i", "o", "u"].includes(
         personality.toLocaleLowerCase()[0]
@@ -235,6 +229,12 @@ export default class TileSet extends Component {
         } ${type} type of ${getEnglishedAspect(type, this.state[type])},`;
       }
     });
+
+    if (sortedAndOrdered) {
+      phrase += ` sorted by ${
+        sortBy === "moofactoryPeriod" ? "moofactory period" : sortBy
+      }, ordered ${orderToEnglish[orderBy]},`;
+    }
 
     return sentencify(phrase);
   };
@@ -263,16 +263,7 @@ export default class TileSet extends Component {
       viewingAspectFilter,
       sortBy,
       orderBy,
-      personality,
-      horn,
-      wing,
-      hair,
-      spot,
-      accessory,
-      body,
-      emote,
-      tail,
-      leg
+      personality
     } = this.state;
     const collection = this.getCollection();
     const appliedFilter = this.getAppliedFilter();

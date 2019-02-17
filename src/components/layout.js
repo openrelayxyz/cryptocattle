@@ -4,6 +4,7 @@ import { Segment, Sidebar } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 import {
+  CowpareProvider,
   DrawerContext,
   DrawerProvider,
   MessengerContext,
@@ -28,23 +29,25 @@ export default function Layout({ children }) {
       render={data => (
         <DrawerProvider>
           <MessengerProvider>
-            <MessengerContext.Consumer>
-              {({ message }) => message && <Messenger />}
-            </MessengerContext.Consumer>
-            <Sidebar.Pushable>
-              <Navbar />
-              <DrawerContext.Consumer>
-                {({ isOpen }) => <Drawer visible={isOpen} />}
-              </DrawerContext.Consumer>
-              <Segment
-                style={{
-                  minHeight: "100vh",
-                  paddingTop: "49px"
-                }}
-              >
-                <Sidebar.Pusher>{children}</Sidebar.Pusher>
-              </Segment>
-            </Sidebar.Pushable>
+            <CowpareProvider>
+              <MessengerContext.Consumer>
+                {({ message }) => message && <Messenger />}
+              </MessengerContext.Consumer>
+              <Sidebar.Pushable>
+                <Navbar />
+                <DrawerContext.Consumer>
+                  {({ isOpen }) => <Drawer visible={isOpen} />}
+                </DrawerContext.Consumer>
+                <Segment
+                  style={{
+                    minHeight: "100vh",
+                    paddingTop: "49px"
+                  }}
+                >
+                  <Sidebar.Pusher>{children}</Sidebar.Pusher>
+                </Segment>
+              </Sidebar.Pushable>
+            </CowpareProvider>
           </MessengerProvider>
         </DrawerProvider>
       )}

@@ -3,11 +3,11 @@ import { Header, Image, Menu, Segment, Table } from "semantic-ui-react";
 
 import { sizeToEnglish } from "../../helpers";
 import { BrandService } from "../../services";
+import { CowpareContext } from "../cowpare";
 import { DrawerContext, SubscreenType } from "../drawer";
 
-function AbstractCowSubscreen({
-  open,
-  cow: {
+function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
+  const {
     id,
     image,
     description,
@@ -24,9 +24,8 @@ function AbstractCowSubscreen({
       charisma
     },
     forSale
-  },
-  isOwned
-}) {
+  } = cow;
+
   return (
     <>
       <Segment
@@ -167,7 +166,11 @@ function AbstractCowSubscreen({
           {
             key: 1,
             icon: "users",
-            content: "Cowpare"
+            content: "Cowpare",
+            onClick: () => {
+              setIndependent(cow);
+              open(SubscreenType.CowpareSubscreen);
+            }
           }
         ].concat(
           isOwned
@@ -188,7 +191,16 @@ export default function CowSubscreen() {
   return (
     <DrawerContext.Consumer>
       {({ open, subscreenProps: { cow, isOwned } }) => (
-        <AbstractCowSubscreen open={open} cow={cow} isOwned={isOwned} />
+        <CowpareContext.Consumer>
+          {({ setIndependent }) => (
+            <AbstractCowSubscreen
+              open={open}
+              cow={cow}
+              isOwned={isOwned}
+              setIndependent={setIndependent}
+            />
+          )}
+        </CowpareContext.Consumer>
       )}
     </DrawerContext.Consumer>
   );

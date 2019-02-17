@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import {
   BrandSubscreen,
   CowSubscreen,
+  CowpareSubscreen,
   LinksSubscreen,
   StrawSubscreen
 } from "./subscreens";
@@ -11,21 +12,24 @@ export const SubscreenType = {
   LinksSubscreen: 0,
   CowSubscreen: 1,
   StrawSubscreen: 2,
-  BrandSubscreen: 3
+  BrandSubscreen: 3,
+  CowpareSubscreen: 4
 };
 
 export const subscreenTypeToComponent = {
   [SubscreenType.LinksSubscreen]: LinksSubscreen,
   [SubscreenType.CowSubscreen]: CowSubscreen,
   [SubscreenType.StrawSubscreen]: StrawSubscreen,
-  [SubscreenType.BrandSubscreen]: BrandSubscreen
+  [SubscreenType.BrandSubscreen]: BrandSubscreen,
+  [SubscreenType.CowpareSubscreen]: CowpareSubscreen
 };
 
 export const subscreenTypeToTitle = {
   [SubscreenType.LinksSubscreen]: "Links",
   [SubscreenType.CowSubscreen]: "Viewing a Cow",
   [SubscreenType.StrawSubscreen]: "Viewing a Straw",
-  [SubscreenType.BrandSubscreen]: "Brand a Cow"
+  [SubscreenType.BrandSubscreen]: "Brand a Cow",
+  [SubscreenType.CowpareSubscreen]: "Compare Cows"
 };
 
 export const DrawerContext = React.createContext();
@@ -56,6 +60,7 @@ export default class DrawerProvider extends Component {
       this.setState({
         isOpen: false,
         subscreen: SubscreenType.LinksSubscreen,
+        subscreenTitle: subscreenTypeToTitle[SubscreenType.LinksSubscreen],
         subscreenProps: {}
       });
     },
