@@ -455,11 +455,15 @@ export default class TileSet extends Component {
               {collection.length === 0 && (
                 <>
                   <Segment attached="top">
-                    No cows match the provided filter.
+                    {appliedFilter
+                      ? "Nothing matches the provided filter."
+                      : "There is nothing in this collection."}
                   </Segment>
-                  <Button attached="bottom" onClick={this.reset}>
-                    Clear
-                  </Button>
+                  {appliedFilter && (
+                    <Button attached="bottom" onClick={this.reset}>
+                      Clear
+                    </Button>
+                  )}
                 </>
               )}
               {!viewingAll && tiles.length - 10 > 0 && (

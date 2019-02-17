@@ -4,12 +4,27 @@ import pasture from "../assets/pasture.svg";
 import { Hero, Layout, TileSet } from "../components";
 import { getLocalCows, getLocalStraws } from "../helpers";
 import { DrawerContext, SubscreenType } from "../providers";
+import { UpstreamService } from "../services";
 
 export default class PasturePage extends Component {
   state = {
-    cows: getLocalCows(),
-    straws: getLocalStraws()
+    cows: [],
+    straws: []
   };
+
+  async componentDidMount() {
+    const cows = await (process.env.NODE_ENV === "production"
+      ? UpstreamService.getMyCows()
+      : getLocalCows());
+    const straws = await (process.env.NODE_ENV === "production"
+      ? UpstreamService.getMyStraws()
+      : getLocalStraws());
+
+    this.setState({
+      cows,
+      straws
+    });
+  }
 
   render() {
     const { cows, straws } = this.state;
