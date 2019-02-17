@@ -115,7 +115,7 @@ export default class Upstream {
             )
           );
         const count = await getBalanceOf(currentAddress).then(result =>
-          result.toString()
+          result.toNumber()
         );
         console.log("\n\n\n", "count", count, "\n\n\n");
         const tokenIds = await Promise.all(
@@ -140,7 +140,8 @@ export default class Upstream {
 
         return straws;
       }
-    } catch {
+    } catch (err) {
+      console.log("\n\n\n", "err", err, "\n\n\n");
       return [];
     }
   }
