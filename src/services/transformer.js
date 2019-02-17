@@ -1,3 +1,8 @@
+import Chance from "chance";
+
+const chance = new Chance();
+const random = (min, max) => chance.integer({ min, max });
+
 export default class TransformerService {
   static transformCow(serverCow) {
     const { id, image, attributes } = serverCow;
@@ -62,7 +67,9 @@ export default class TransformerService {
         id,
         image,
         aspects: {},
-        attributes: {}
+        attributes: {
+          generation: random(0, 6)
+        }
       }
     );
 

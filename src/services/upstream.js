@@ -5,14 +5,12 @@ import { cowAbi, strawAbi } from "../abi";
 import { openRelayApiUrl, cowAddress, strawAddress } from "../constants";
 import TransformerService from "./transformer";
 
-const chance = new Chance();
 const cache = {
   cowsForSale: null,
   strawsForSale: null,
   myCows: null,
   myStraws: null
 };
-const random = (min, max) => chance.integer({ min, max });
 
 export default class Upstream {
   static async getCowsForSale() {
@@ -107,11 +105,7 @@ export default class Upstream {
           metadataUrls.map((url, index) =>
             axios.get(url).then(payload => ({
               ...payload.data,
-              id: tokenIds[index],
-              attributes: {
-                ...payload.data.attributes,
-                generation: random(0, 6)
-              }
+              id: tokenIds[index]
             }))
           )
         );
