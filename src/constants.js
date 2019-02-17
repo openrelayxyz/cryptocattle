@@ -11,13 +11,31 @@ export const Theme = {
 };
 
 export const personalityTypes = [
-  "Friendly",
-  "Standoffish",
-  "Confident",
-  "Snarky",
-  "Reserved",
-  "Shy",
-  "Energetic"
+  "Bashful",
+  "Docile",
+  "Hardy",
+  "Quirky",
+  "Serious",
+  "Adamant",
+  "Brave",
+  "Lonely",
+  "Naughty",
+  "Bold",
+  "Relaxed",
+  "Impish",
+  "Lax",
+  "Mild",
+  "Modest",
+  "Quiet",
+  "Rash",
+  "Calm",
+  "Gentle",
+  "Sassy",
+  "Careful",
+  "Timid",
+  "Hasty",
+  "Jolly",
+  "Naive"
 ];
 
 export const aspectTypes = {

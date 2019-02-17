@@ -26,6 +26,7 @@ export default function HTML(props) {
         />
         {props.postBodyComponents}
         <script type="text/javascript" src={withPrefix("/vendor.js")} />
+        <script src="https://instant.0x.org/instant.js" />
       </body>
     </html>
   );

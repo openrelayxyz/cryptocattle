@@ -3,13 +3,31 @@ const Chance = require("chance");
 const chance = new Chance();
 const random = (min, max) => chance.integer({ min, max });
 const personalityTypes = [
-  "Friendly",
-  "Standoffish",
-  "Confident",
-  "Snarky",
-  "Reserved",
-  "Shy",
-  "Energetic"
+  "Bashful",
+  "Docile",
+  "Hardy",
+  "Quirky",
+  "Serious",
+  "Adamant",
+  "Brave",
+  "Lonely",
+  "Naughty",
+  "Bold",
+  "Relaxed",
+  "Impish",
+  "Lax",
+  "Mild",
+  "Modest",
+  "Quiet",
+  "Rash",
+  "Calm",
+  "Gentle",
+  "Sassy",
+  "Careful",
+  "Timid",
+  "Hasty",
+  "Jolly",
+  "Naive"
 ];
 const aspectTypes = {
   tail: [

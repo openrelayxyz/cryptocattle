@@ -45,12 +45,15 @@ export default class SaleBarnPage extends Component {
       ? UpstreamService.getCowsForSale()
       : getUpstreamCows());
     const straws = await (process.env.NODE_ENV === "production"
-      ? UpstreamService.getStrawsForSale()
+      ? // ? UpstreamService.getStrawsForSale()
+        getUpstreamStraws()
       : getUpstreamStraws());
 
     this.setState({
       cows,
-      straws
+      straws,
+      listedCows: getLocalCows().filter(cow => cow.forSale),
+      listedStraws: getLocalStraws().filter(straw => straw.forSale)
     });
   }
 

@@ -145,9 +145,17 @@ export default class Upstream {
       }
 
       const {
-        data: { records: straws }
+        data: { records }
       } = await axios.get(
         `${openRelayApiUrl}/v2/orders?networkId=42&makerAssetAddress=${strawAddress}&perPage=99999`
+      );
+
+      const straws = records.map(
+        ({
+          metaData: {
+            makerAssetMetadata: { raw_metadata }
+          }
+        }) => JSON.parse(raw_metadata)
       );
 
       // Add logic for listed vs. others;
@@ -339,5 +347,12 @@ export default class Upstream {
 
       return false;
     }
+  }
+
+  static async buyCow(id) {
+    try {
+      if (typeof window !== "undefined" && window.web3) {
+      }
+    } catch (error) {}
   }
 }
