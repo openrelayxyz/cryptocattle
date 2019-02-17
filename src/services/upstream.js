@@ -114,16 +114,25 @@ export default class Upstream {
         return cache.cowsForSale;
       }
 
-      const { data } = await axios.get(
+      const {
+        data: { records }
+      } = await axios.get(
         `${openRelayApiUrl}/v2/orders?networkId=42&makerAssetAddress=${cowAddress}&perPage=99999`
       );
-      console.log("\n\n\n", "data", data, "\n\n\n");
+
+      const cows = records.map(
+        ({
+          metaData: {
+            makerAssetMetadata: { raw_metadata }
+          }
+        }) => TransformerService.transformCow(JSON.parse(raw_metadata))
+      );
 
       // Add logic for listed vs. others;
 
       cache.cowsForSale = cows;
 
-      return data.records;
+      return cows;
     } catch {
       return [];
     }
