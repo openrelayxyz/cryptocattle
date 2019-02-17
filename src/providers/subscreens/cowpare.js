@@ -20,7 +20,7 @@ class AbstractCowpareSubscreen extends Component {
     document.getElementById("drawer").scrollTo(0, 0);
 
     const cows = await (process.env.NODE_ENV === "production"
-      ? UpstreamService.getCowsForSale()
+      ? UpstreamService.getMyCows()
       : getLocalCows());
 
     this.setState({ cows });

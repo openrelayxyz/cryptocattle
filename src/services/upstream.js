@@ -81,9 +81,7 @@ export default class Upstream {
         const getTokenUri = tokenId =>
           new Promise((resolve, reject) =>
             cowContract.tokenURI(tokenId, (err, metadataUrl) =>
-              console.log(metadataUrl) || err
-                ? reject(err)
-                : resolve(metadataUrl)
+              err ? reject(err) : resolve(metadataUrl)
             )
           );
         const count = await getBalanceOf(currentAddress);
