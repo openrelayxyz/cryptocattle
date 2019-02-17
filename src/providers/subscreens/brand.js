@@ -45,7 +45,7 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
               render={({ field }) => (
                 <Form.Input
                   {...field}
-                  placeholder="Enter a name for this cow."
+                  placeholder="Enter a name for this Cow."
                   style={
                     errors.name && touched.name
                       ? {

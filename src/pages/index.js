@@ -28,9 +28,7 @@ export default function IndexPage({ navigate }) {
         >
           Get Started
         </Button>
-        <Button tertiary onClick={() => navigate("/faq")}>
-          Got Questions?
-        </Button>
+        <Button onClick={() => navigate("/faq")}>Got Questions?</Button>
       </Button.Group>
     </Layout>
   );

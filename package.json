@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "chance": "^1.0.18",
     "formik": "^1.5.0",
     "gatsby": "^2.1.4",
