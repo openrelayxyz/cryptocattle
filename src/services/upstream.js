@@ -191,7 +191,7 @@ export default class Upstream {
     try {
       if (typeof window !== "undefined" && window.web3) {
         const { elementutilities } = window;
-        const unsignedOrder = new elementutilities.UnsignedOrder({
+        const unsignedOrder = new elementutilities.UnsignedOrder.default({
           exchangeAddress: "0x35dd2932454449b14cee11a94d3674a936d5d7b2",
           expirationTimeSeconds:
             parseInt(new Date().getTime() / 1000) + 10 * 24 * 60 * 60,
@@ -219,7 +219,7 @@ export default class Upstream {
           .toBigNumber(unsignedOrder.makerFee)
           .plus(unsignedOrder.takerFee);
 
-        const signer = new elementutilities.Signer(
+        const signer = new elementutilities.Signer.default(
           window.web3,
           window.ethereum.selectedAddress
         );
