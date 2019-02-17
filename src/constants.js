@@ -146,3 +146,5 @@ export const faq = {
   "What kinds of Cows and Straws can I buy or own?":
     "Cows and Straws have a variety of physical and personality characteristics. Some are much more rare than others! You can get Cows with a variety of horn, body, legs, horn styles -- some Cows even have wings and other magical features!"
 };
+
+export const openRelayApiUrl = "https://api.openrelay.xyz/";

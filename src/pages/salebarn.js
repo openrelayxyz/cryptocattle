@@ -38,18 +38,12 @@ export default class SaleBarnPage extends Component {
 
     return (
       <Layout>
-        <Hero
-          image="https://placehold.it/64x64"
-          title="Sale Barn"
-          description="Buy new Cows and Straws and view the ones you have for sale."
-        />
+        <Hero image="https://placehold.it/64x64" title="Sale Barn" />
         <DrawerContext.Consumer>
           {({ open }) => (
             <>
               <TileSet
                 title="Cows for Sale"
-                link="#"
-                description="Cows available on the marketplace."
                 tiles={cows.map(cow => ({
                   ...cow,
                   onClick: () =>
@@ -58,8 +52,6 @@ export default class SaleBarnPage extends Component {
               />
               <TileSet
                 title="Straws for Sale"
-                link="#"
-                description="Straws available on the marketplace."
                 tiles={straws.map(straw => ({
                   image: straw.image,
                   onClick: () =>
@@ -72,8 +64,6 @@ export default class SaleBarnPage extends Component {
               <Divider />
               <TileSet
                 title="My Listed Cows"
-                link="#"
-                description="Cows you are attempting to sell on the marketplace."
                 tiles={listedCows.map(cow => ({
                   ...cow,
                   onClick: () =>
@@ -82,8 +72,6 @@ export default class SaleBarnPage extends Component {
               />
               <TileSet
                 title="My Listed Straws"
-                link="#"
-                description="Straws you are attempting to sell on the marketplace."
                 tiles={listedStraws.map(straw => ({
                   image: straw.image,
                   onClick: () =>

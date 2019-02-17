@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "semantic-ui-react";
 
 import { Hero, Layout, Panel } from "../components";
+import { TouService } from "../services";
 
 export default function IndexPage({ navigate }) {
   return (
