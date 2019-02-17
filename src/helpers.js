@@ -20,3 +20,9 @@ export const getLocalStraws = () => {
 
   return [];
 };
+
+export const sizeToEnglish = {
+  sm: "small",
+  md: "medium",
+  lg: "large"
+};

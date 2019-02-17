@@ -1,14 +1,9 @@
 import React from "react";
 import { Header, Image, Menu, Segment, Table } from "semantic-ui-react";
 
+import { sizeToEnglish } from "../../helpers";
 import { BrandService } from "../../services";
 import { DrawerContext, SubscreenType } from "../drawer";
-
-const sizeToEnglish = {
-  sm: "small",
-  md: "medium",
-  lg: "large"
-};
 
 function AbstractCowSubscreen({
   open,

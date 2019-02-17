@@ -20,6 +20,99 @@ export const personalityTypes = [
   "Energetic"
 ];
 
+export const aspectTypes = {
+  tail: [
+    {
+      identifier: "poof",
+      size: "sm"
+    },
+    {
+      identifier: "star",
+      size: "md"
+    }
+  ],
+  leg: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  body: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  spot: [
+    {
+      identifier: "fat",
+      size: "md"
+    },
+    {
+      identifier: "skinny",
+      size: "md"
+    }
+  ],
+  horn: [
+    {
+      identifier: "flower",
+      size: "sm"
+    },
+    {
+      identifier: "horn",
+      size: "md"
+    }
+  ],
+  wing: [
+    {
+      identifier: "devil",
+      size: "sm"
+    },
+    {
+      identifier: "angel",
+      size: "lg"
+    }
+  ],
+  accessory: [
+    {
+      identifier: "bell",
+      size: "md"
+    },
+    {
+      identifier: "medal",
+      size: "md"
+    }
+  ],
+  emote: [
+    {
+      identifier: "smirk",
+      size: "md"
+    },
+    {
+      identifier: "alarmed",
+      size: "md"
+    }
+  ],
+  hair: [
+    {
+      identifier: "none",
+      size: "md"
+    },
+    {
+      identifier: "short",
+      size: "md"
+    }
+  ]
+};
+
 export const attributeTypes = [
   "generation",
   "moofactoryPeriod",

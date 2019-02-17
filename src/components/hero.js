@@ -24,7 +24,6 @@ export default function Hero({ image, title, description }) {
           margin: 0
         }}
       />
-      ;
     </Segment>
   );
 }
