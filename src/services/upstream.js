@@ -200,7 +200,7 @@ export default class Upstream {
           makerAssetAmount: 1,
           makerAssetData: `0x02571792000000000000000000000000${cowAddress.slice(
             2
-          )}${idToHex(id)}`,
+          )}${idToHex(id)}`.toLowerCase(),
           makerFee: 0,
           salt: parseInt(new Date().getTime() / 1000),
           senderAddress: "0x0000000000000000000000000000000000000000",
