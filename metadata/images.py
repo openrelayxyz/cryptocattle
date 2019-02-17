@@ -19,8 +19,11 @@ suffix = {
 def combine(fnames):
     base = SVGImgUtils.fromfile(fnames[0])
     for fname in fnames[1:]:
-        layer = SVGImgUtils.fromfile(fname)
-        base.append(layer.root)
+        try:
+            layer = SVGImgUtils.fromfile(fname)
+            base.append(layer.root)
+        except Exception as e:
+            print(e)
     return etree.tostring(base.root, xml_declaration=True,
                              standalone=True,
                              pretty_print=False)

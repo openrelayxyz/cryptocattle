@@ -20,14 +20,16 @@ def cow_metadata(tokenId):
     )
     try:
         dnaInt = int.from_bytes(cow.functions.getDNA(tokenId).call(), byteorder='big')
-    except Exception:
+    except Exception as e:
+        print(e)
         return "Not found", 404
     personality = getPersonality(dnaInt)
 
     response = {
       "description": "A %s cow" % personality,
-      "image": "%s/images/cow/%s.svg" % (os.environ.get("API_ENDPOINT"), tokenId),
-      "attributes": []
+      "image": "%s/images/cow/%s.svg" % (os.environ.get("API_ENDPOINT").rstrip("/"), tokenId),
+      "attributes": [],
+      "id": str(tokenId),
     }
     response["attributes"].append({
         "trait_type": "moofactory_period",
@@ -104,15 +106,23 @@ def straw_metadata(tokenId):
         address=os.environ.get("STRAW_ADDRESS"),
         abi=straw_abi,
     )
+    print(straw)
+    try:
+        frozen = straw.functions.frozen(tokenId).call()
+    except Exception as e:
+        print(e)
+        return "Not Found: %s" % e
     try:
         response = {
-          "image": "%simages/straw/%s.svg" % (os.environ.get("API_ENDPOINT"), tokenId),
+          "image": "%s/images/straw/%s.svg" % (os.environ.get("API_ENDPOINT").rstrip("/"), tokenId),
+          "id": str(tokenId),
           "attributes": [
-            {"trait_type": "frozen", "value": straw.functions.frozen(tokenId).call()},
+            {"trait_type": "frozen", "value": frozen},
             {"trait_type": "parentId", "value": int(tokenId >> 128)},
           ]
         }
-    except Exception:
+    except Exception as e:
+        print(e)
         return "Not Found", 404
     return Response(json.dumps(response), mimetype="application/json")
 
@@ -124,11 +134,10 @@ def cow_image(tokenId):
         address=os.environ.get("COW_ADDRESS"),
         abi=cow_abi,
     )
-    # try:
-    #     dnaInt = int.from_bytes(cow.functions.getDNA(tokenId).call(), byteorder='big')
-    # except Exception:
-    #     return "Not found", 404
+    try:
+        dnaInt = int.from_bytes(cow.functions.getDNA(tokenId).call(), byteorder='big')
+    except Exception as e:
+        return "Not Found", 404
 
-    dnaInt = int.from_bytes(cow.functions.getDNA(tokenId).call(), byteorder='big')
     images = imageListFromDNA(dnaInt)
     return Response(combine(images), mimetype="image/svg+xml")

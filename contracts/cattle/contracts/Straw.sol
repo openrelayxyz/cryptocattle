@@ -43,7 +43,7 @@ contract Straw is ERC721Full, Ownable {
       uint timestamp;
       uint number;
       (timestamp, number) = cows.nextStraw(cows.tokenOfOwnerByIndex(_owner, i));
-      if(timestamp > block.timestamp) {
+      if(timestamp < block.timestamp) {
         count += 1;
       }
     }
