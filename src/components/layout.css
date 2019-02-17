@@ -14,3 +14,7 @@ strong {
   text-transform: uppercase !important;
   letter-spacing: 3px !important;
 }
+
+* {
+  -webkit-overflow-scrolling: touch !important;
+}
