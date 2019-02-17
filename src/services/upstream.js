@@ -212,7 +212,7 @@ export default class Upstream {
           takerFee: 0
         });
         const orderConfig = await axios
-          .post(`https://api.openrelay.xyz/v2/order_config`, unsignedOrder)
+          .post(`https://api.openrelay.xyz/v2/order_config`, unsignedOrder.json)
           .then(response => response.data);
 
         unsignedOrder.takerFee = window.web3
@@ -226,7 +226,10 @@ export default class Upstream {
 
         unsignedOrder.signature = await signer.signMessage(unsignedOrder.hash);
 
-        await axios.post(`https://api.openrelay.xyz/v2/order`, unsignedOrder);
+        await axios.post(
+          `https://api.openrelay.xyz/v2/order`,
+          unsignedOrder.json
+        );
 
         return true;
       }
