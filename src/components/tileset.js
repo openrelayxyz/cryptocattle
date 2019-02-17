@@ -64,7 +64,7 @@ const getEnglishedAspect = (aspect, value) => {
 
 export default class TileSet extends Component {
   state = {
-    viewingAll: false,
+    viewingAll: Boolean(this.props.unbounded),
     viewingAspectFilter: false,
     sortBy: "any",
     orderBy: "any",
@@ -81,6 +81,7 @@ export default class TileSet extends Component {
   };
 
   toggleViewingAll = () =>
+    !this.props.unbounded &&
     this.setState(
       prevState => ({
         viewingAll: !prevState.viewingAll,
@@ -257,7 +258,7 @@ export default class TileSet extends Component {
   };
 
   render() {
-    const { title, description, tiles, unsortable } = this.props;
+    const { title, description, tiles, unsortable, unbounded } = this.props;
     const {
       viewingAll,
       viewingAspectFilter,
@@ -280,9 +281,11 @@ export default class TileSet extends Component {
             }}
           >
             <div>{title}</div>{" "}
-            <small onClick={this.toggleViewingAll}>
-              {viewingAll ? "less" : "all"}
-            </small>
+            {!unbounded && (
+              <small onClick={this.toggleViewingAll}>
+                {viewingAll ? "less" : "all"}
+              </small>
+            )}
           </Header>
           {description}
         </Segment>
@@ -427,8 +430,8 @@ export default class TileSet extends Component {
             <Panel
               attached="bottom"
               style={{
-                maxHeight: "30rem",
-                overflow: "auto"
+                maxHeight: unbounded ? "none" : "30rem",
+                overflow: unbounded ? "initial" : "auto"
               }}
             >
               {appliedFilter && collection.length > 0 && (

@@ -33,6 +33,7 @@ class AbstractDrawer extends Component {
       >
         <Menu
           size="huge"
+          widths={2}
           items={[
             {
               key: 0,

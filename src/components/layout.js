@@ -13,6 +13,7 @@ import {
 import Drawer from "./drawer";
 import Messenger from "./messenger";
 import Navbar from "./navbar";
+import "./layout.css";
 
 export default function Layout({ children }) {
   return (
@@ -41,7 +42,7 @@ export default function Layout({ children }) {
                 <Segment
                   style={{
                     minHeight: "100vh",
-                    paddingTop: "49px"
+                    paddingTop: "80px"
                   }}
                 >
                   <Sidebar.Pusher>{children}</Sidebar.Pusher>

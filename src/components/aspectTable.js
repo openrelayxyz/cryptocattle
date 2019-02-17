@@ -39,46 +39,31 @@ export default function AspectTable({ cows }) {
         <Table.Row>
           <Table.Cell>Hair</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.hair.identifier},{" "}
-              {sizeToEnglish[cow.aspects.hair.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.hair.identifier}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
           <Table.Cell>Spot</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.spot.identifier},{" "}
-              {sizeToEnglish[cow.aspects.spot.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.spot.identifier}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
           <Table.Cell>Accessory</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.accessory.identifier},{" "}
-              {sizeToEnglish[cow.aspects.accessory.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.accessory.identifier}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
           <Table.Cell>Body</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.body.identifier},{" "}
-              {sizeToEnglish[cow.aspects.body.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.body.identifier}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
           <Table.Cell>Emote</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.emote.identifier},{" "}
-              {sizeToEnglish[cow.aspects.emote.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.emote.identifier}</Cell>
           ))}
         </Table.Row>
         <Table.Row>
@@ -93,10 +78,7 @@ export default function AspectTable({ cows }) {
         <Table.Row>
           <Table.Cell>Leg</Table.Cell>
           {cows.map((cow, index) => (
-            <Cell key={index}>
-              {cow.aspects.leg.identifier},{" "}
-              {sizeToEnglish[cow.aspects.leg.size]}
-            </Cell>
+            <Cell key={index}>{cow.aspects.leg.identifier}</Cell>
           ))}
         </Table.Row>
       </Table.Body>

@@ -7,7 +7,7 @@ import { CowpareContext } from "../cowpare";
 import { DrawerContext, SubscreenType } from "../drawer";
 
 function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
-  const { id, image, description, forSale } = cow;
+  const { id, image, forSale } = cow;
 
   return (
     <>
@@ -17,7 +17,7 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
           margin: 0
         }}
       >
-        <Header content={BrandService.getName(id)} subheader={description} />
+        <Header content={BrandService.getName(id)} />
       </Segment>
       <Segment attached>
         <Image src={image} />

@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Comic Neue";
+  src: url(../assets/comic-neue.ttf);
+}
+
+div {
+  font-family: "Comic Neue" !important;
+}

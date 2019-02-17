@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Menu } from "semantic-ui-react";
+import { Image, Menu } from "semantic-ui-react";
 
+import logo from "../assets/logo.svg";
 import { DrawerContext, SubscreenType } from "../providers";
 
 export default function Navbar() {
@@ -17,7 +18,15 @@ export default function Navbar() {
               key: 0,
               as: Link,
               to: "/",
-              icon: "question circle",
+              content: (
+                <Image
+                  src={logo}
+                  style={{
+                    width: "50px",
+                    height: "50px"
+                  }}
+                />
+              ),
               style: {
                 flex: 1
               }

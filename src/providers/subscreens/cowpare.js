@@ -76,6 +76,7 @@ class AbstractCowpareSubscreen extends Component {
           </Segment>
         )}
         <TileSet
+          unbounded
           title="Select a Cow to cowpare against."
           tiles={cows.map(cow => ({
             ...cow,
