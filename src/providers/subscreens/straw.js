@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Menu, Segment } from "semantic-ui-react";
 
+import moof from "../../assets/moof.svg";
 import dollarStraw from "../../assets/straw_dollar.svg";
 import frozenStraw from "../../assets/frozen_straw.svg";
 import { DrawerContext, SubscreenType } from "../drawer";
@@ -85,8 +86,25 @@ function AbstractStrawSubscreen({ open, straw, isOwned }) {
                 },
                 {
                   key: 2,
-                  icon: "user",
-                  content: "Moof",
+                  content: (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <div>Moof</div>
+                      <Image
+                        src={moof}
+                        style={{
+                          width: "48px",
+                          height: "48px",
+                          marginRight: "0.5rem"
+                        }}
+                      />
+                    </div>
+                  ),
                   className: "fancy",
                   onClick: () => open(SubscreenType.MoofSubscreen)
                 }
