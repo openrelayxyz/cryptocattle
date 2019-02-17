@@ -9,7 +9,7 @@ export default class TouService {
     ) {
       const { elementutilities } = window;
       const term = new elementutilities.Terms.default(
-        openRelayApiUrl,
+        `${openRelayApiUrl}/`,
         window.ethereum
       );
 
@@ -25,7 +25,7 @@ export default class TouService {
     ) {
       const { elementutilities } = window;
       const term = new elementutilities.Terms.default(
-        openRelayApiUrl,
+        `${openRelayApiUrl}/`,
         window.ethereum
       );
 
@@ -41,7 +41,7 @@ export default class TouService {
     ) {
       const { elementutilities } = window;
       const term = new elementutilities.Terms.default(
-        openRelayApiUrl,
+        `${openRelayApiUrl}/`,
         window.ethereum
       );
 

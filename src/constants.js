@@ -147,4 +147,8 @@ export const faq = {
     "Cows and Straws have a variety of physical and personality characteristics. Some are much more rare than others! You can get Cows with a variety of horn, body, legs, horn styles -- some Cows even have wings and other magical features!"
 };
 
-export const openRelayApiUrl = "https://api.openrelay.xyz/";
+export const openRelayApiUrl = "https://api.openrelay.xyz";
+
+export const cowAddress = "0x6FB42707A192549Ec650FA1490FCCEf98EccD4Fd";
+
+export const strawAddress = "0x5D501e27CEEc1974403135a69d40D517aFe53A9C";
