@@ -5,7 +5,7 @@ import { Form, Header, Image, Menu, Segment } from "semantic-ui-react";
 
 import dollarCow from "../../assets/cow_dollar.svg";
 import { Theme } from "../../constants";
-import { BrandService } from "../../services";
+import { BrandService, UpstreamService } from "../../services";
 import { DrawerContext } from "../drawer";
 import { MessengerContext } from "../messenger";
 
@@ -69,7 +69,22 @@ function AbstractSellSubscreen({ close, showMessage, type, cow, straw }) {
           initialValues={{
             price: 0
           }}
-          onSubmit={console.log}
+          onSubmit={async ({ price }) => {
+            const salePosted = await UpstreamService.sellCow(id, price);
+
+            if (salePosted) {
+              showMessage({
+                content: "Successfully placed a Cow for sale."
+              });
+            } else {
+              showMessage({
+                content: "Unable to place that Cow for sale.",
+                severity: "negative"
+              });
+            }
+
+            close();
+          }}
           render={({ handleSubmit, touched, errors }) => (
             <Form as={FormikForm}>
               <Segment

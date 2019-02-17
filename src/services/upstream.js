@@ -12,6 +12,15 @@ const cache = {
   myStraws: null
 };
 
+const idToHex = id => {
+  if (typeof window !== "undefined") {
+    return window.web3
+      .toBigNumber(id)
+      .toString(16)
+      .padStart(64, 0);
+  }
+};
+
 export default class Upstream {
   static async getCowsForSale() {
     try {
@@ -175,6 +184,56 @@ export default class Upstream {
       }
     } catch (err) {
       return [];
+    }
+  }
+
+  static async sellCow(id, price) {
+    try {
+      if (typeof window !== "undefined" && window.web3) {
+        const { elementutilities } = window;
+        const unsignedOrder = new elementutilities.UnsignedOrder({
+          exchangeAddress: "0x35dd2932454449b14cee11a94d3674a936d5d7b2",
+          expirationTimeSeconds:
+            parseInt(new Date().getTime() / 1000) + 10 * 24 * 60 * 60,
+          feeRecipientAddress: "0x74430e1338613b5a9166032cfd8f8f0a717bac67",
+          makerAddress: window.ethereum.selectedAddress,
+          makerAssetAmount: 1,
+          makerAssetData: `0x02571792000000000000000000000000${cowAddress.slice(
+            2
+          )}${idToHex(id)}`,
+          makerFee: 0,
+          salt: parseInt(new Date().getTime() / 1000),
+          senderAddress: "0x0000000000000000000000000000000000000000",
+          takerAddress: "0x0000000000000000000000000000000000000000",
+          takerAssetAmount: price,
+          takerAssetData: `0xf47261b0000000000000000000000000${"0xd0a1e359811322d97991e03f863a0c30c2cf029c".slice(
+            2
+          )}`,
+          takerFee: 0
+        });
+        const orderConfig = await axios
+          .post(`https://api.openrelay.xyz/v2/order_config`, unsignedOrder)
+          .then(response => response.data);
+
+        unsignedOrder.takerFee = window.web3
+          .toBigNumber(unsignedOrder.makerFee)
+          .plus(unsignedOrder.takerFee);
+
+        const signer = new elementutilities.Signer(
+          window.web3,
+          window.ethereum.selectedAddress
+        );
+
+        unsignedOrder.signature = await signer.signMessage(unsignedOrder.hash);
+
+        await axios.post(`https://api.openrelay.xyz/v2/order`, unsignedOrder);
+
+        return true;
+      }
+    } catch (error) {
+      console.error("fuuuu", error);
+
+      return false;
     }
   }
 }
