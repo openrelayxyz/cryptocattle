@@ -15,8 +15,7 @@ export default class TransformerService {
       "hair",
       "tail",
       "wings",
-      "accessories",
-      "spots"
+      "accessories"
     ];
     const aspectToProperty = {
       emotes: "emote",

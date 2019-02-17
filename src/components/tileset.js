@@ -73,7 +73,6 @@ export default class TileSet extends Component {
     horn: "any",
     wing: "any",
     hair: "any",
-    spot: "any",
     accessory: "any",
     body: "any",
     emote: "any",
@@ -108,8 +107,6 @@ export default class TileSet extends Component {
   setWing = (_, { value: wing }) => this.setState({ wing });
 
   setHair = (_, { value: hair }) => this.setState({ hair });
-
-  setSpot = (_, { value: spot }) => this.setState({ spot });
 
   setAccessory = (_, { value: accessory }) => this.setState({ accessory });
 
@@ -181,7 +178,6 @@ export default class TileSet extends Component {
       horn,
       wing,
       hair,
-      spot,
       accessory,
       body,
       emote,
@@ -194,7 +190,6 @@ export default class TileSet extends Component {
       horn,
       wing,
       hair,
-      spot,
       accessory,
       body,
       emote,
@@ -249,7 +244,6 @@ export default class TileSet extends Component {
       horn: "any",
       wing: "any",
       hair: "any",
-      spot: "any",
       accessory: "any",
       body: "any",
       emote: "any",

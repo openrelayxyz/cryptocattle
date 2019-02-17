@@ -43,12 +43,6 @@ export default function AspectTable({ cows }) {
           ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell>Spot</Table.Cell>
-          {cows.map((cow, index) => (
-            <Cell key={index}>{cow.aspects.spot.identifier}</Cell>
-          ))}
-        </Table.Row>
-        <Table.Row>
           <Table.Cell>Accessory</Table.Cell>
           {cows.map((cow, index) => (
             <Cell key={index}>{cow.aspects.accessory.identifier}</Cell>

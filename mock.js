@@ -42,16 +42,6 @@ const aspectTypes = {
       size: "md"
     }
   ],
-  spot: [
-    {
-      identifier: "fat",
-      size: "md"
-    },
-    {
-      identifier: "skinny",
-      size: "md"
-    }
-  ],
   horn: [
     {
       identifier: "flower",
