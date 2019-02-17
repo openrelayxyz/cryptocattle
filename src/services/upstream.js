@@ -114,7 +114,9 @@ export default class Upstream {
                 : resolve(metadataUrl)
             )
           );
-        const count = await getBalanceOf(currentAddress);
+        const count = await getBalanceOf(currentAddress).then(result =>
+          result.toString()
+        );
         console.log("\n\n\n", "count", count, "\n\n\n");
         const tokenIds = await Promise.all(
           Array.from(
