@@ -2,6 +2,7 @@ import React from "react";
 import { Button, List, Segment } from "semantic-ui-react";
 
 import { Hero, Layout } from "../components";
+import { faq } from "../constants";
 
 export default function FaqPage({ navigate }) {
   return (
@@ -16,16 +17,16 @@ export default function FaqPage({ navigate }) {
           divided
           relaxed="very"
           size="huge"
-          items={[
-            {
-              header: "foo",
-              content: "bar"
-            },
-            {
-              header: "foo",
-              content: "bar"
-            }
-          ]}
+          items={Object.entries(faq).map(([question, answer]) => ({
+            header: question,
+            content: (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: answer
+                }}
+              />
+            )
+          }))}
         />
       </Segment>
       <Button.Group vertical fluid size="huge" style={{ marginTop: "1rem" }}>
