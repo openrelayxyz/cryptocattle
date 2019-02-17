@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Divider } from "semantic-ui-react";
 
+import barn from "../assets/barn.svg";
+import dollarCow from "../assets/cow_dollar.svg";
+import dollarStraw from "../assets/straw_dollar.svg";
+import listCow from "../assets/cow_list.svg";
+import listStraw from "../assets/straw_list.svg";
 import { Hero, Layout, TileSet } from "../components";
 import { getLocalCows, getLocalStraws } from "../helpers";
 import { DrawerContext, SubscreenType } from "../providers";
@@ -53,11 +58,16 @@ export default class SaleBarnPage extends Component {
 
     return (
       <Layout>
-        <Hero image="https://placehold.it/64x64" title="Sale Barn" />
+        <Hero
+          image={barn}
+          title="Sale Barn"
+          description="Buy and sell Cows and Straws on the free mooket."
+        />
         <DrawerContext.Consumer>
           {({ open }) => (
             <>
               <TileSet
+                image={dollarCow}
                 title="Cows for Sale"
                 tiles={cows.map(cow => ({
                   ...cow,
@@ -66,6 +76,7 @@ export default class SaleBarnPage extends Component {
                 }))}
               />
               <TileSet
+                image={dollarStraw}
                 title="Straws for Sale"
                 tiles={straws.map(straw => ({
                   image: straw.image,
@@ -78,6 +89,7 @@ export default class SaleBarnPage extends Component {
               />
               <Divider />
               <TileSet
+                image={listCow}
                 title="My Listed Cows"
                 tiles={listedCows.map(cow => ({
                   ...cow,
@@ -86,6 +98,7 @@ export default class SaleBarnPage extends Component {
                 }))}
               />
               <TileSet
+                image={listStraw}
                 title="My Listed Straws"
                 tiles={listedStraws.map(straw => ({
                   image: straw.image,

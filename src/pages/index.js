@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 
+import home from "../assets/home_icon.svg";
 import { Hero, Layout, Panel } from "../components";
 import { TouService, UpstreamService } from "../services";
 
@@ -29,9 +30,9 @@ export default class IndexPage extends Component {
     return (
       <Layout>
         <Hero
-          image="https://placehold.it/64x64"
-          title="This is a tagline."
-          description="Lorem ipsum dolor sit amet consectur adipus etc."
+          image={home}
+          title="CryptoCattle"
+          description="Like CryptoKitties but Beefier.  Ethereum fun beyond cow-pare."
         />
         <Panel attached="top">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

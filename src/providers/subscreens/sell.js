@@ -3,6 +3,7 @@ import { Formik, Form as FormikForm, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Form, Header, Image, Menu, Segment } from "semantic-ui-react";
 
+import dollarCow from "../../assets/cow_dollar.svg";
 import { Theme } from "../../constants";
 import { BrandService } from "../../services";
 import { DrawerContext } from "../drawer";
@@ -77,8 +78,21 @@ function AbstractSellSubscreen({ close, showMessage, type, cow, straw }) {
                   margin: 0
                 }}
               >
-                <Image src="https://placehold.it/64x64" centered />
-                <Header as="h1" textAlign="center">
+                <Image
+                  src={dollarCow}
+                  centered
+                  style={{
+                    width: "64px",
+                    height: "64px"
+                  }}
+                />
+                <Header
+                  as="h1"
+                  textAlign="center"
+                  style={{
+                    marginTop: 0
+                  }}
+                >
                   <span className="fancy">Sell {cowName || "a Cow"}</span>
                   <Header.Subheader content="That's cow-pitalism." />
                 </Header>
@@ -155,8 +169,21 @@ function AbstractSellSubscreen({ close, showMessage, type, cow, straw }) {
               margin: 0
             }}
           >
-            <Image src="https://placehold.it/64x64" centered />
-            <Header as="h1" textAlign="center">
+            <Image
+              src={dollarCow}
+              centered
+              style={{
+                width: "64px",
+                height: "64px"
+              }}
+            />
+            <Header
+              as="h1"
+              textAlign="center"
+              style={{
+                marginTop: 0
+              }}
+            >
               <span className="fancy">Cancel Selling a Straw</span>
               <Header.Subheader content="They were probably getting a straw deal, anyway." />
             </Header>
@@ -205,8 +232,21 @@ function AbstractSellSubscreen({ close, showMessage, type, cow, straw }) {
                   margin: 0
                 }}
               >
-                <Image src="https://placehold.it/64x64" centered />
-                <Header as="h1" textAlign="center">
+                <Image
+                  src={dollarCow}
+                  centered
+                  style={{
+                    width: "64px",
+                    height: "64px"
+                  }}
+                />
+                <Header
+                  as="h1"
+                  textAlign="center"
+                  style={{
+                    marginTop: 0
+                  }}
+                >
                   <span className="fancy">Sell a Straw</span>
                   <Header.Subheader content="Too high a price is highway straw-bbery." />
                 </Header>

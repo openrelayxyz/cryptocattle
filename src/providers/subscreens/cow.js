@@ -1,6 +1,9 @@
 import React from "react";
 import { Header, Image, Menu, Segment } from "semantic-ui-react";
 
+import dollarCow from "../../assets/cow_dollar.svg";
+import cowpare from "../../assets/cow_pare.svg";
+import brand from "../../assets/brand.svg";
 import { AspectTable, AttributeTable, TraitTable } from "../../components";
 import { BrandService } from "../../services";
 import { CowpareContext } from "../cowpare";
@@ -35,16 +38,52 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
         items={[
           {
             key: 0,
-            icon: "usd",
-            content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale",
+            content: (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
+              >
+                <div>
+                  {isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale"}
+                </div>
+                <Image
+                  src={dollarCow}
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    marginRight: "0.5rem"
+                  }}
+                />
+              </div>
+            ),
             className: "fancy",
             onClick: () =>
               open(SubscreenType.SellSubscreen, { type: "cow", cow })
           },
           {
             key: 1,
-            icon: "users",
-            content: "Cowpare",
+            content: (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
+              >
+                <div>Cowpare</div>
+                <Image
+                  src={cowpare}
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    marginRight: "0.5rem"
+                  }}
+                />
+              </div>
+            ),
             className: "fancy",
             onClick: () => {
               setIndependent(cow);
@@ -55,8 +94,25 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
           isOwned
             ? {
                 key: 2,
-                icon: "user",
-                content: "Brand",
+                content: (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <div>Brand</div>
+                    <Image
+                      src={brand}
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        marginRight: "0.5rem"
+                      }}
+                    />
+                  </div>
+                ),
                 className: "fancy",
                 onClick: () => open(SubscreenType.BrandSubscreen, { id })
               }

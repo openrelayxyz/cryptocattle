@@ -3,6 +3,7 @@ import { Formik, Form as FormikForm, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Form, Header, Image, Menu, Segment } from "semantic-ui-react";
 
+import brand from "../../assets/brand.svg";
 import { Theme } from "../../constants";
 import { BrandService } from "../../services";
 import { DrawerContext } from "../drawer";
@@ -15,7 +16,7 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
         name: Yup.string()
           .min(1, "Cow names much be at least one character.")
           .max(40, "Cow names must be fewer than 41 characters. ")
-          .required("A name is required for branding a cow.")
+          .required("A name is required for branding a Cow.")
       })}
       initialValues={{
         name: ""
@@ -35,8 +36,21 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
               margin: 0
             }}
           >
-            <Image src="https://placehold.it/64x64" centered />
-            <Header as="h1" textAlign="center">
+            <Image
+              src={brand}
+              centered
+              style={{
+                width: "64px",
+                height: "64px"
+              }}
+            />
+            <Header
+              as="h1"
+              textAlign="center"
+              style={{
+                marginTop: 0
+              }}
+            >
               <span className="fancy">Branding</span>
               <Header.Subheader content="Feel the burn." />
             </Header>
@@ -77,7 +91,7 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
             items={[
               {
                 key: 0,
-                icon: "pencil",
+                icon: "checkmark",
                 content: "Brand",
                 onClick: handleSubmit,
                 className: "fancy"

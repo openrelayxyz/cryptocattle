@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import pasture from "../assets/pasture.svg";
+import basicCow from "../assets/cow_basic.svg";
+import basicStraw from "../assets/straw_basic.svg";
 import { Hero, Layout, TileSet } from "../components";
 import { getLocalCows, getLocalStraws } from "../helpers";
 import { DrawerContext, SubscreenType } from "../providers";
@@ -40,6 +42,7 @@ export default class PasturePage extends Component {
           {({ open }) => (
             <>
               <TileSet
+                image={basicCow}
                 title="My Cows"
                 tiles={cows.map(cow => ({
                   ...cow,
@@ -48,6 +51,7 @@ export default class PasturePage extends Component {
                 }))}
               />
               <TileSet
+                image={basicStraw}
                 title="My Straws"
                 tiles={straws.map(straw => ({
                   image: straw.image,

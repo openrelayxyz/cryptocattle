@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, List, Segment } from "semantic-ui-react";
 
+import faqIcon from "../assets/faq.svg";
 import { Hero, Layout } from "../components";
 import { faq } from "../constants";
 
@@ -8,7 +9,7 @@ export default function FaqPage({ navigate }) {
   return (
     <Layout>
       <Hero
-        image="https://placehold.it/64x64"
+        image={faqIcon}
         title="Frequently Asked Questions"
         description="Lorem ipsum dolor sit amet consectur adipus etc."
       />
@@ -17,7 +18,8 @@ export default function FaqPage({ navigate }) {
           divided
           relaxed="very"
           size="huge"
-          items={Object.entries(faq).map(([question, answer]) => ({
+          items={Object.entries(faq).map(([question, answer], index) => ({
+            key: index,
             header: question,
             content: (
               <div

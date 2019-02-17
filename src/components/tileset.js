@@ -4,6 +4,7 @@ import {
   Dropdown,
   Header,
   Icon,
+  Image,
   Menu,
   Segment,
   Sidebar
@@ -258,7 +259,14 @@ export default class TileSet extends Component {
   };
 
   render() {
-    const { title, description, tiles, unsortable, unbounded } = this.props;
+    const {
+      image,
+      title,
+      description,
+      tiles,
+      unsortable,
+      unbounded
+    } = this.props;
     const {
       viewingAll,
       viewingAspectFilter,
@@ -280,7 +288,25 @@ export default class TileSet extends Component {
               justifyContent: "space-between"
             }}
           >
-            <div className="fancy">{title}</div>{" "}
+            <div
+              className="fancy"
+              style={{
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              {image && (
+                <Image
+                  src={image}
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    marginRight: "0.5rem"
+                  }}
+                />
+              )}
+              {title}
+            </div>{" "}
             {!unbounded && (
               <small onClick={this.toggleViewingAll}>
                 {viewingAll ? "less" : "all"}
