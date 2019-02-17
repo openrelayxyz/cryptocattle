@@ -23,7 +23,10 @@ export default class PasturePage extends Component {
       : getLocalStraws());
 
     this.setState({
-      cows,
+      cows:
+        process.env.NODE_ENV === "production"
+          ? cows.concat(getLocalCows())
+          : cows,
       straws
     });
   }
