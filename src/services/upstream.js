@@ -211,6 +211,14 @@ export default class Upstream {
           )}`,
           takerFee: 0
         });
+
+        console.log(
+          "\n\n\n",
+          "unsignedOrder.json",
+          unsignedOrder.json,
+          "\n\n\n"
+        );
+
         const orderConfig = await axios
           .post(`https://api.openrelay.xyz/v2/order_config`, unsignedOrder.json)
           .then(response => response.data);
