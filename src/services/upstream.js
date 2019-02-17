@@ -216,8 +216,8 @@ export default class Upstream {
           .then(response => response.data);
 
         unsignedOrder.takerFee = window.web3
-          .toBigNumber(unsignedOrder.makerFee)
-          .plus(unsignedOrder.takerFee);
+          .toBigNumber(orderConfig.makerFee)
+          .plus(orderConfig.takerFee);
 
         const signer = new elementutilities.Signer.default(
           window.web3,
