@@ -228,7 +228,12 @@ export default class Upstream {
 
         await axios.post(
           `https://api.openrelay.xyz/v2/order`,
-          unsignedOrder.json
+          unsignedOrder.json,
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
         );
 
         return true;
