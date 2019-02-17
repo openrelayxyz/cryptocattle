@@ -8,16 +8,22 @@ import {
   TraitTable
 } from "../../components";
 import { getLocalCows } from "../../helpers";
-import { BrandService } from "../../services";
+import { BrandService, UpstreamService } from "../../services";
 import { CowpareContext } from "../cowpare";
 
 class AbstractCowpareSubscreen extends Component {
   state = {
-    cows: getLocalCows()
+    cows: []
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     document.getElementById("drawer").scrollTo(0, 0);
+
+    const cows = await (process.env.NODE_ENV === "production"
+      ? UpstreamService.getCowsForSale()
+      : getLocalCows());
+
+    this.setState({ cows });
   }
 
   render() {
