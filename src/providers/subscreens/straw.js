@@ -37,13 +37,22 @@ function AbstractStrawSubscreen({ open, straw, isOwned }) {
           }
         ].concat(
           isOwned
-            ? {
-                key: 1,
-                icon: "snowflake",
-                content: frozen ? "Unfreeze" : "Freeze",
-                className: "fancy",
-                onClick: () => open(SubscreenType.FreezeSubscreen, { straw })
-              }
+            ? [
+                {
+                  key: 1,
+                  icon: "snowflake",
+                  content: frozen ? "Unfreeze" : "Freeze",
+                  className: "fancy",
+                  onClick: () => open(SubscreenType.FreezeSubscreen, { straw })
+                },
+                {
+                  key: 2,
+                  icon: "user",
+                  content: "Moof",
+                  className: "fancy",
+                  onClick: () => open(SubscreenType.MoofSubscreen)
+                }
+              ]
             : null
         )}
       />
