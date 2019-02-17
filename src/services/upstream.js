@@ -114,17 +114,16 @@ export default class Upstream {
         return cache.cowsForSale;
       }
 
-      const {
-        data: { records: cows }
-      } = await axios.get(
+      const { data } = await axios.get(
         `${openRelayApiUrl}/v2/orders?networkId=42&makerAssetAddress=${cowAddress}&perPage=99999`
       );
+      console.log("\n\n\n", "data", data, "\n\n\n");
 
       // Add logic for listed vs. others;
 
       cache.cowsForSale = cows;
 
-      return cows;
+      return data.records;
     } catch {
       return [];
     }
