@@ -4,9 +4,20 @@ import { cowAbi, strawAbi } from "../abi";
 import { openRelayApiUrl, cowAddress, strawAddress } from "../constants";
 import TransformerService from "./transformer";
 
+const cache = {
+  cowsForSale: null,
+  strawsForSale: null,
+  myCows: null,
+  myStraws: null
+};
+
 export default class Upstream {
   static async getCowsForSale() {
     try {
+      if (cache.cowsForSale) {
+        return cache.cowsForSale;
+      }
+
       const {
         data: { records: cows }
       } = await axios.get(
@@ -14,6 +25,8 @@ export default class Upstream {
       );
 
       // Add logic for listed vs. others;
+
+      cache.cowsForSale = cows;
 
       return cows;
     } catch {
@@ -23,15 +36,21 @@ export default class Upstream {
 
   static async getStrawsForSale() {
     try {
+      if (cache.strawsForSale) {
+        return cache.strawsForSale;
+      }
+
       const {
-        data: { records: cows }
+        data: { records: straws }
       } = await axios.get(
         `${openRelayApiUrl}/v2/orders?networkId=42&makerAssetAddress=${strawAddress}&perPage=99999`
       );
 
       // Add logic for listed vs. others;
 
-      return cows;
+      cache.strawsForSale = straws;
+
+      return straws;
     } catch {
       return [];
     }
@@ -39,6 +58,10 @@ export default class Upstream {
 
   static async getMyCows() {
     try {
+      if (cache.myCows) {
+        return cache.myCows;
+      }
+
       if (typeof window !== "undefined" && window.web3) {
         const cowContract = window.web3.eth.contract(cowAbi).at(cowAddress);
         const currentAddress = window.ethereum.selectedAddress;
@@ -85,8 +108,11 @@ export default class Upstream {
             }))
           )
         );
+        const transformedCows = cows.map(TransformerService.transformCow);
 
-        return cows.map(TransformerService.transformCow);
+        cache.myCows = transformedCows;
+
+        return transformedCows;
       }
     } catch {
       return [];
@@ -95,6 +121,10 @@ export default class Upstream {
 
   static async getMyStraws() {
     try {
+      if (cache.myStraws) {
+        return cache.myStraws;
+      }
+
       if (typeof window !== "undefined" && window.web3) {
         const strawContract = window.web3.eth
           .contract(strawAbi)
@@ -142,6 +172,8 @@ export default class Upstream {
         const straws = await Promise.all(
           metadataUrls.map(url => axios.get(url).then(payload => payload.data))
         );
+
+        cache.myStraws = straws;
 
         return straws;
       }

@@ -45,7 +45,12 @@ export default class TransformerService {
         }
 
         if (aspects.includes(trait_type)) {
-          prev.aspects[aspectToProperty[trait_type]] = value;
+          const [aspect, identifier, size] = value.split("_");
+
+          prev.aspects[aspectToProperty[trait_type]] = {
+            identifier,
+            size
+          };
         }
 
         if (attributeTypes.includes(trait_type)) {

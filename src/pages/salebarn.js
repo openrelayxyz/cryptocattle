@@ -4,6 +4,7 @@ import { Divider } from "semantic-ui-react";
 import { Hero, Layout, TileSet } from "../components";
 import { getLocalCows, getLocalStraws } from "../helpers";
 import { DrawerContext, SubscreenType } from "../providers";
+import { UpstreamService } from "../services";
 
 const getUpstreamCows = () => {
   if (typeof window !== "undefined") {
@@ -27,11 +28,25 @@ const getUpstreamStraws = () => {
 
 export default class SaleBarnPage extends Component {
   state = {
-    cows: getUpstreamCows(),
-    straws: getUpstreamStraws(),
-    listedCows: getLocalCows().filter(({ forSale }) => forSale),
-    listedStraws: getLocalStraws().filter(({ forSale }) => forSale)
+    cows: [],
+    straws: [],
+    listedCows: [],
+    listedStraws: []
   };
+
+  async componentDidMount() {
+    const cows = await (process.env.NODE_ENV === "production"
+      ? UpstreamService.getCowsForSale()
+      : getUpstreamCows());
+    const straws = await (process.env.NODE_ENV === "production"
+      ? UpstreamService.getStrawsForSale()
+      : getUpstreamStraws());
+
+    this.setState({
+      cows,
+      straws
+    });
+  }
 
   render() {
     const { cows, straws, listedCows, listedStraws } = this.state;
