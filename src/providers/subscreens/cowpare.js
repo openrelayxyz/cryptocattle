@@ -23,7 +23,12 @@ class AbstractCowpareSubscreen extends Component {
       ? UpstreamService.getMyCows()
       : getLocalCows());
 
-    this.setState({ cows });
+    this.setState({
+      cows:
+        process.env.NODE_ENV === "production"
+          ? cows.concat(getLocalCows())
+          : cows
+    });
   }
 
   render() {
