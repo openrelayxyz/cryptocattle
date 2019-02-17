@@ -14,11 +14,11 @@ export default function Hero({ image, title, description }) {
         src={image}
         size="tiny"
         style={{
-          marginRight: "0.5rem"
+          marginRight: "1rem"
         }}
       />
       <Header
-        content={title}
+        content={<span className="fancy">{title}</span>}
         subheader={description}
         style={{
           margin: 0

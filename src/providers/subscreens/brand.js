@@ -37,7 +37,7 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
           >
             <Image src="https://placehold.it/64x64" centered />
             <Header as="h1" textAlign="center">
-              Branding
+              <span className="fancy">Branding</span>
               <Header.Subheader content="Feel the burn." />
             </Header>
             <Field
@@ -79,13 +79,15 @@ function AbstractBrandSubscreen({ close, id, showMessage }) {
                 key: 0,
                 icon: "pencil",
                 content: "Brand",
-                onClick: handleSubmit
+                onClick: handleSubmit,
+                className: "fancy"
               },
               {
                 key: 1,
                 icon: "close",
                 content: "Cancel",
-                onClick: close
+                onClick: close,
+                className: "fancy"
               }
             ]}
           />

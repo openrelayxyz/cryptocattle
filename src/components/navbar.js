@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Image, Menu } from "semantic-ui-react";
+import { Header, Image, Menu } from "semantic-ui-react";
 
 import logo from "../assets/logo.svg";
 import { DrawerContext, SubscreenType } from "../providers";
@@ -35,7 +35,9 @@ export default function Navbar() {
               key: 1,
               as: Link,
               to: "/",
-              content: "CryptoCattle",
+              content: (
+                <Header as="h1" content="CryptoCattle" className="fancy" />
+              ),
               style: {
                 flex: 3
               }

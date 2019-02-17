@@ -3,6 +3,14 @@
   src: url(../assets/comic-neue.ttf);
 }
 
-div {
+div,
+.header {
   font-family: "Comic Neue" !important;
+}
+
+.fancy,
+button,
+strong {
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
 }

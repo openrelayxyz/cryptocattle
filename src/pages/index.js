@@ -20,9 +20,18 @@ export default function IndexPage({ navigate }) {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </Panel>
-      <Button primary attached="bottom" onClick={() => navigate("/pasture")}>
-        Get Started
-      </Button>
+      <Button.Group vertical fluid size="huge" style={{ marginTop: "1rem" }}>
+        <Button
+          primary
+          onClick={() => navigate("/pasture")}
+          style={{ marginBottom: "1rem" }}
+        >
+          Get Started
+        </Button>
+        <Button tertiary onClick={() => navigate("/faq")}>
+          Got Questions?
+        </Button>
+      </Button.Group>
     </Layout>
   );
 }

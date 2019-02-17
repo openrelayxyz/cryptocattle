@@ -280,7 +280,7 @@ export default class TileSet extends Component {
               justifyContent: "space-between"
             }}
           >
-            <div>{title}</div>{" "}
+            <div className="fancy">{title}</div>{" "}
             {!unbounded && (
               <small onClick={this.toggleViewingAll}>
                 {viewingAll ? "less" : "all"}
@@ -440,6 +440,7 @@ export default class TileSet extends Component {
                   <Button
                     attached="bottom"
                     onClick={this.reset}
+                    className="fancy"
                     style={{
                       marginBottom: "1rem"
                     }}

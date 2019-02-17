@@ -31,14 +31,16 @@ function AbstractStrawSubscreen({
           {
             key: 0,
             icon: "usd",
-            content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale"
+            content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale",
+            className: "fancy"
           }
         ].concat(
           isOwned
             ? {
                 key: 1,
                 icon: "snowflake",
-                content: frozen ? "Unfreeze" : "Freeze"
+                content: frozen ? "Unfreeze" : "Freeze",
+                className: "fancy"
               }
             : null
         )}

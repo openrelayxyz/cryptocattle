@@ -45,7 +45,8 @@ class AbstractDrawer extends Component {
               icon: "close",
               position: "right",
               content: "Close",
-              onClick: close
+              onClick: close,
+              className: "fancy"
             }
           ]}
           style={{

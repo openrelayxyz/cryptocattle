@@ -36,12 +36,14 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
           {
             key: 0,
             icon: "usd",
-            content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale"
+            content: isOwned ? (forSale ? "Cancel Sale" : "Sell") : "For Sale",
+            className: "fancy"
           },
           {
             key: 1,
             icon: "users",
             content: "Cowpare",
+            className: "fancy",
             onClick: () => {
               setIndependent(cow);
               open(SubscreenType.CowpareSubscreen);
@@ -53,6 +55,7 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
                 key: 2,
                 icon: "user",
                 content: "Brand",
+                className: "fancy",
                 onClick: () => open(SubscreenType.BrandSubscreen, { id })
               }
             : null
