@@ -128,7 +128,7 @@ export const faq = {
   "What is CryptoCattle?":
     "It's like CryptoKitties -- but beefier! In both games, you can buy, sell, trade and breed animals.",
   "Isn't this just a rip off of CryptoKitties?":
-    "No, it's a <em>principled</em> ripoff of CryptoKitties! <a target='_blank' rel='noopener noreferrer' href='http://openrelay.xyz'>OpenRelay</a> has been working on their open source EtherCattle project to operationalize the management of Ethereum clients -- servers should be \"livestock\", not pets! When answering questions about EtherCattle, we've often joked that it wasn't the cow version of CryptoKitties, so for this ETHDenver 2019, we've decided to bring our joke to life!",
+    "No, it's a <em>principled</em> ripoff of CryptoKitties! <a target='_blank' rel='noopener noreferrer' href='http://openrelay.xyz'>OpenRelay</a> has been working on their open source EtherCattle project to operationalize the management of Ethereum clients -- servers should be \"livestock\", not \"pets\"! When answering questions about EtherCattle, we've often joked that it wasn't the cow version of CryptoKitties, so for this ETHDenver 2019, we've decided to bring our joke to life!",
   "How do I get started with CryptoCattle?":
     'First, click the menu button in the navigation bar at the top of the screen. When the drawer slides in, select the "Sale Barn" option. On the "Sale Barn" screen, you can view a list of Cows for sale, and purchase one that strikes your fancy!',
   'What is a "generation"?':

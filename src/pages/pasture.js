@@ -26,7 +26,6 @@ export default class PasturePage extends Component {
             <>
               <TileSet
                 title="My Cows"
-                description="Your collection of cows."
                 tiles={cows.map(cow => ({
                   ...cow,
                   onClick: () =>
@@ -35,7 +34,6 @@ export default class PasturePage extends Component {
               />
               <TileSet
                 title="My Straws"
-                description="Your collection of straws."
                 tiles={straws.map(straw => ({
                   image: straw.image,
                   onClick: () =>
