@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Menu, Segment } from "semantic-ui-react";
 
+import basicStraw from "../../assets/straw_basic.svg";
 import moof from "../../assets/moof.svg";
 import dollarStraw from "../../assets/straw_dollar.svg";
 import frozenStraw from "../../assets/frozen_straw.svg";
@@ -9,7 +10,6 @@ import { DrawerContext, SubscreenType } from "../drawer";
 function AbstractStrawSubscreen({ open, straw, isOwned }) {
   const {
     id,
-    image,
     attributes: { frozen, parentId },
     forSale
   } = straw;
@@ -22,7 +22,14 @@ function AbstractStrawSubscreen({ open, straw, isOwned }) {
           margin: 0
         }}
       >
-        <Image src={image} />
+        <Image
+          src={basicStraw}
+          centered
+          style={{
+            width: "128px",
+            height: "128px"
+          }}
+        />
       </Segment>
       <Menu
         size="massive"

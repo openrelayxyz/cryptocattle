@@ -39,7 +39,14 @@ class AbstractCowpareSubscreen extends Component {
                 {/* Placeholder */}
                 <Table.Cell />
                 <Table.Cell textAlign="center">
-                  <Image src={independent.image} centered />
+                  <Image
+                    src={independent.image}
+                    centered
+                    style={{
+                      width: "64px",
+                      height: "64px"
+                    }}
+                  />
                   <Header
                     as="p"
                     content={BrandService.getName(independent.id)}
@@ -51,7 +58,14 @@ class AbstractCowpareSubscreen extends Component {
                 <Table.Cell textAlign="center">
                   {dependent ? (
                     <>
-                      <Image src={dependent.image} centered />
+                      <Image
+                        src={dependent.image}
+                        centered
+                        style={{
+                          width: "64px",
+                          height: "64px"
+                        }}
+                      />
                       <Header
                         as="p"
                         content={BrandService.getName(dependent.id)}

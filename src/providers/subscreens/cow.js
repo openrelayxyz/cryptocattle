@@ -23,7 +23,14 @@ function AbstractCowSubscreen({ open, setIndependent, cow, isOwned }) {
         <Header content={BrandService.getName(id)} />
       </Segment>
       <Segment attached>
-        <Image src={image} />
+        <Image
+          src={image}
+          centered
+          style={{
+            width: "128px",
+            height: "128px"
+          }}
+        />
       </Segment>
       <Segment attached>
         <TraitTable cows={[cow]} />
