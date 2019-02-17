@@ -121,7 +121,7 @@ exports.Mock = class Mock {
     const cow = {
       id: ++cowCount,
       description: chance.sentence({ words: wordCount }),
-      image: "https://placehold.it/64x64",
+      image: `https://cryptocattle.xyz/images/cow/${random(0, 78)}.svg`,
       aspects: Object.entries(aspectTypes).reduce((prev, [key, value]) => {
         prev[key] = value[random(0, value.length - 1)];
         return prev;
