@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { cowAbi, strawAbi } from "../abi";
 import { openRelayApiUrl, cowAddress, strawAddress } from "../constants";
+import TransformerService from "./transformer";
 
 export default class Upstream {
   static async getCowsForSale() {
@@ -77,10 +78,15 @@ export default class Upstream {
           tokenIds.map(id => getTokenUri(id))
         );
         const cows = await Promise.all(
-          metadataUrls.map(url => axios.get(url).then(payload => payload.data))
+          metadataUrls.map((url, index) =>
+            axios.get(url).then(payload => ({
+              ...payload.data,
+              id: tokenIds[index]
+            }))
+          )
         );
 
-        return cows;
+        return cows.map(TransformerService.transformCow);
       }
     } catch {
       return [];
