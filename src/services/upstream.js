@@ -115,6 +115,7 @@ export default class Upstream {
             )
           );
         const count = await getBalanceOf(currentAddress);
+        console.log("\n\n\n", "count", count, "\n\n\n");
         const tokenIds = await Promise.all(
           Array.from(
             {
@@ -126,9 +127,11 @@ export default class Upstream {
               )
           )
         );
+        console.log("\n\n\n", "tokenIds", tokenIds, "\n\n\n");
         const metadataUrls = await Promise.all(
           tokenIds.map(id => getTokenUri(id))
         );
+        console.log("\n\n\n", "metadataUrls", metadataUrls, "\n\n\n");
         const straws = await Promise.all(
           metadataUrls.map(url => axios.get(url).then(payload => payload.data))
         );
