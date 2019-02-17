@@ -22,6 +22,92 @@ const idToHex = id => {
 };
 
 export default class Upstream {
+  static async setApprovals() {
+    if (typeof window !== "undefined") {
+      const approved = window.localStorage.getItem("approvalsSet");
+
+      if (!approved) {
+        // Cow
+        const cowContract = window.web3.eth.contract(cowAbi).at(cowAddress);
+        const setCowApprovalForAll = () =>
+          new Promise((resolve, reject) => {
+            cowContract.setApprovalForAll(
+              "0x2a9127c745688a165106c11cd4d647d2220af821",
+              true,
+              err => {
+                err ? reject(err) : resolve();
+              }
+            );
+          });
+        const getCowApprovedForAll = () =>
+          new Promise((resolve, reject) => {
+            cowContract.isApprovedForAll(
+              window.ethereum.selectedAddress,
+              "0x2a9127c745688a165106c11cd4d647d2220af821",
+              (err, result) => (err ? reject(err) : resolve(result))
+            );
+          });
+
+        await setCowApprovalForAll();
+
+        // Straw
+        const strawContract = window.web3.eth
+          .contract(strawAbi)
+          .at(strawAddress);
+        const setStrawApprovalForAll = () =>
+          new Promise((resolve, reject) => {
+            strawContract.setApprovalForAll(
+              "0x2a9127c745688a165106c11cd4d647d2220af821",
+              true,
+              err => {
+                err ? reject(err) : resolve();
+              }
+            );
+          });
+        const getStrawApprovedForAll = () =>
+          new Promise((resolve, reject) => {
+            strawContract.isApprovedForAll(
+              window.ethereum.selectedAddress,
+              "0x2a9127c745688a165106c11cd4d647d2220af821",
+              (err, result) => (err ? reject(err) : resolve(result))
+            );
+          });
+
+        await setStrawApprovalForAll();
+
+        return new Promise(resolve => {
+          let cowApproved = false;
+          let strawApproved = false;
+          let checkingApprovalsComplete = setInterval(async () => {
+            if (!cowApproved) {
+              const approved = await getCowApprovedForAll();
+
+              if (approved) {
+                cowApproved = true;
+              }
+            }
+
+            if (!strawApproved) {
+              const approved = await getStrawApprovedForAll();
+
+              if (approved) {
+                strawApproved = true;
+              }
+            }
+
+            if (cowApproved && strawApproved) {
+              clearInterval(checkingApprovalsComplete);
+
+              window.localStorage.setItem("approvalsSet", true);
+
+              resolve();
+            }
+          }, 500);
+        });
+      }
+    }
+  }
+
   static async getCowsForSale() {
     try {
       if (cache.cowsForSale) {
@@ -190,6 +276,8 @@ export default class Upstream {
   static async sellCow(id, price) {
     try {
       if (typeof window !== "undefined" && window.web3) {
+        await Upstream.setApprovals();
+
         const { elementutilities } = window;
         const unsignedOrder = new elementutilities.UnsignedOrder.default({
           exchangeAddress: "0x35dd2932454449b14cee11a94d3674a936d5d7b2",
