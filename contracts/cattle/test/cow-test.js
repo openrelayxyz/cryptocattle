@@ -24,7 +24,7 @@ contract('Cow', function(accounts) {
     }).then((_straw) => {
         straw = _straw;
     }).then(() => {
-      return increaseTime(60);
+      return increaseTime(300);
     });
   });
   it("should get the token uri", () => {
@@ -71,34 +71,26 @@ contract('Cow', function(accounts) {
     return increaseTime(50*60*60).then(() => {
       return cow.transferFrom(accounts[0], accounts[2], 1)
     }).then(() => {
-      console.log("A");
-      console.log(accounts);
       return cow.transferFrom(accounts[0], accounts[2], 2)
-    }).then((x) => {
-      console.log(x);
-      // assert.ok(false);
-      console.log("B");
-      return Promise.all([
-        cow.ownerOf(1).then(console.log),
-        cow.ownerOf(2).then(console.log),
-      ])
     }).then(() => {
       return increaseTime(50*60*60);
     }).then(() => {
-      console.log("C")
       return Promise.all([
         straw.tokenOfOwnerByIndex(accounts[2], 0),
         straw.tokenOfOwnerByIndex(accounts[2], 1),
       ]);
     }).then((results) => {
-      console.log("D", results)
       strawId1 = results[0];
       strawId2 = results[1];
       return cow.moof(strawId1, strawId2, {from: accounts[2]})
     }).then((tx) => {
-      return cow.ownerOf(tx.logs[1].args.tokenid)
-    }).then((owner) => {
-      assert.equal(owner, accounts[2]);
+      return Promise.all([
+        cow.ownerOf(tx.logs[1].args.tokenid),
+        cow.generation(tx.logs[1].args.tokenid),
+      ]);
+    }).then((results) => {
+      assert.equal(results[0], accounts[2]);
+      assert.equal(results[1].toString(10), 1);
       return cow
     })
   });

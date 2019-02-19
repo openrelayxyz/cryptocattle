@@ -34,6 +34,7 @@ contract Cow is ERC721Full, Ownable {
   }
   mapping (uint256 => Pairing) private parents;
   mapping (uint256 => LastStraw) public lastStraw;
+  mapping (uint256 => uint256) public generation;
 
   event Moof(address indexed owner, uint256 tokenid);
   // event Debug(bool value);
@@ -132,6 +133,7 @@ contract Cow is ERC721Full, Ownable {
     nextMoof += 1;
     _mint(msg.sender, nextMoof);
     dnaSequence[nextMoof] = bytes32((mixer & uint256(getDNA(_parents.parent0))) | ((mixer ^ MAX_UINT ) & uint256(getDNA(_parents.parent1))));
+    generation[nextMoof] = (generation[_parents.parent0] > generation[_parents.parent0] ? generation[_parents.parent0] : generation[_parents.parent1]).add(1);
     emit Moof(msg.sender, nextMoof);
     straws.burn(strawId1);
     straws.burn(strawId2);

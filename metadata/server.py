@@ -31,6 +31,14 @@ def cow_metadata(tokenId):
       "attributes": [],
       "id": str(tokenId),
     }
+    try:
+        generation = cow.functions.generation(tokenId).call(),
+    except Exception:
+        generation = bitsRange(dnaInt, 100, 98)
+    response["attributes"].append({
+        "trait_type": "generation",
+        "value": generation
+    })
     response["attributes"].append({
         "trait_type": "moofactory_period",
         "value": getMoofactoryPeriod(dnaInt)
